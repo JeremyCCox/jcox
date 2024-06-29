@@ -32,3 +32,13 @@
 html{
     scroll-behavior: smooth;
 }
+
+@keyframes shakeTitle {
+    0% { transform: skew(0deg) translate(200px, 0px); color: lightcyan }
+    20% { transform: skew(5deg) translate(195px, -5px); }
+    40% { transform: skew(-10deg) translate(200px, 5px); color: blue }
+    50% { transform: skew(5deg) translate(205px, -5px); }
+    60% { transform: skew(10deg) translate(195px, -5px); color: rebeccapurple }
+    80% { transform: skew(-10deg) translate(205px, -5px); }
+    100% { transform: skew(0deg) translate(200px, 0px);  color:mediumpurple}
+}
