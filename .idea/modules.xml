@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../jcox.iml" filepath="$PROJECT_DIR$/../jcox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jeremy-web-tokens.iml" filepath="$PROJECT_DIR$/jeremy-web-tokens.iml" />
     </modules>
   </component>
 </project>

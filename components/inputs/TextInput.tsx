@@ -1,3 +1,4 @@
+'use client'
 import React, {ChangeEventHandler} from "react";
 
 export default function TextInput({title="Text here", onChange=()=>{}, id="", name=id,value,type='text', width=60}:Readonly<{

@@ -1,13 +1,12 @@
-'use client'
 import Image from "next/image";
 import Section from "@/components/layout/Section";
 import {MouseEvent} from "react";
 
 export default function Home() {
 
-    const handleClick=(e:MouseEvent)=>{
-        window.dispatchEvent(new CustomEvent('customScroll',{detail:e.currentTarget.id.split(':')[0]}))
-    }
+    // const handleClick=(e:MouseEvent)=>{
+    //     window.dispatchEvent(new CustomEvent('customScroll',{detail:e.currentTarget.id.split(':')[0]}))
+    // }
 
     return(
         < >
@@ -19,12 +18,12 @@ export default function Home() {
                 </div>
                 <div>
                     <div className={'text-center grid'}>
-                        <button className={'text-blue-900 text-2xl'} onClick={handleClick} id={'yyc_hacks_2024:b'}>
-                            YYC Hacks 2024
-                        </button>
-                        <button className={'text-blue-900 text-2xl'} onClick={handleClick} id={'wrapaudit:b'}>
-                            Wrapaudit.com
-                        </button>
+                        {/*<button className={'text-blue-900 text-2xl'} onClick={handleClick} id={'yyc_hacks_2024:b'}>*/}
+                        {/*    YYC Hacks 2024*/}
+                        {/*</button>*/}
+                        {/*<button className={'text-blue-900 text-2xl'} onClick={handleClick} id={'wrapaudit:b'}>*/}
+                        {/*    Wrapaudit.com*/}
+                        {/*</button>*/}
                     </div>
 
                 </div>
