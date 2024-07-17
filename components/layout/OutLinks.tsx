@@ -1,7 +1,13 @@
 'use client'
 import Image from "next/image";
 import {useEffect, useState} from "react";
+import {Kanit} from "next/font/google";
 
+const kanit = Kanit({
+    subsets:["latin"],
+    // display:'swap',
+    weight:'400',
+})
 export default function OutLinks(){
     const [active, setActive] = useState(false)
     const [copyText, setCopyText] = useState("Copy")
@@ -15,6 +21,7 @@ export default function OutLinks(){
             setCopyText('Copy')
         },500)
     },[active])
+
     const calcImages =()=>{
         let sqr = 40
         switch(true){
@@ -46,7 +53,7 @@ export default function OutLinks(){
                 You can find me:
             </h4>
             <div className={'text-amber-100 grid md:flex justify-end w-full fixed md:relative px-2 md:px-0'}>
-                <div className={'flex'}>
+                <div className={`flex ${kanit.className}`}>
                     <div className={`relative group my-auto ${active?'w-[280px] md:w-[370px] lg:w-[545px] ':'w-0'} overflow-hidden transition-all duration-700`} onClick={()=>console.log("adada")}>
                         <span className={'flex bg-gray-900 rounded-lg'}>
                             <span className={`bg-white py-[3px] md:py-[5px] lg:py-[8px] select-all overflow-hidden relative text-lg md:text-2xl lg:text-4xl px-2 my-auto text-gray-900 hover:cursor-text group transition-all rounded-l-lg duration-700`}>

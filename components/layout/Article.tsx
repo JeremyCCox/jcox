@@ -30,7 +30,7 @@ export default function Article(
         }
 
     return (
-        <div id={id} className={'py-8 min-w-[80vw] sm:px-16 md:px-24 lg:px-32 mx-[10vw] relative md:snap-center md:snap-mandatory min-h-[90vh] group border border-amber-100 rounded-lg bg-gradient-to-b from-gray-900 to-gray-700 from-50% shadow-gray-700 shadow-2xl mb-16'}>
+        <div id={id} className={'py-8 min-w-[80vw] px-8 sm:px-16 md:px-24 lg:px-32 mx-[10vw] relative md:snap-center md:snap-mandatory min-h-[90vh] group border border-amber-100 rounded-lg bg-gradient-to-b from-gray-900 to-gray-700 from-50% shadow-gray-700 shadow-2xl mb-16'}>
                 {!isHome&&<button className={'hidden md:block absolute md:text-6xl left-16  '} onClick={returnHome}>
                         ←
                 </button>}

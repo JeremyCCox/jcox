@@ -12,6 +12,8 @@
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
     }
+
+
     h1{
         @apply text-3xl md:text-5xl lg:text-7xl text-amber-100
     }
@@ -27,7 +29,7 @@
     h5{
         @apply md:text-lg lg:text-xl text-amber-100
     }
-    p,a,button,input{
+    p,a,button,input,span{
         @apply text-amber-100 lg:text-lg
     }
     ul{
@@ -45,7 +47,12 @@ html{
     scroll-behavior: smooth;
 }
 @media only screen and (max-width:767px) {
-
+    .float-input-span{
+        @apply absolute select-none opacity-100 block top-0 peer-[:not(:placeholder-shown)]:-top-2  peer-[:not(:placeholder-shown)]:text-xs group-focus-within:text-xs group-focus-within:-top-2 rounded-full translate-x-[10px] px-1  text-nowrap overflow-hidden font-bold bg-gradient-to-t from-transparent from-40% to-gray-900 to-40% transition-all duration-300 mt-[4px];
+    }
+    .float-input{
+        @apply rounded-lg p-[.2lh] w-full lg:text-2xl placeholder:opacity-0 bg-transparent border box-border;
+    }
     @keyframes shakeTitle {        0% { transform: skew(0deg) translate(130px, 0px); color: lightcyan }
         20% { transform: skew(5deg) translate(125px, -5px); }
         40% { transform: skew(-10deg) translate(130px, 5px); color: blue }
@@ -56,17 +63,29 @@ html{
     }
 }
 @media only screen and (min-width:768px){
+    .float-input-span{
+        @apply absolute select-none opacity-100 block top-0 peer-[:not(:placeholder-shown)]:-top-2  peer-[:not(:placeholder-shown)]:text-xs group-focus-within:text-xs group-focus-within:-top-2 rounded-full translate-x-[10px] px-1  text-nowrap overflow-hidden font-bold bg-gradient-to-t from-transparent from-40% to-gray-900 to-40% transition-all duration-300 mt-[4px];
+    }
+    .float-input{
+        @apply rounded-lg p-[.2lh] w-full text-lg placeholder:opacity-0 bg-transparent border box-border;
+    }
     @keyframes shakeTitle {
-        0% { transform: skew(0deg) translate(200px, 0px); color: lightcyan }
-        20% { transform: skew(5deg) translate(195px, -5px); }
-        40% { transform: skew(-10deg) translate(200px, 5px); color: blue }
-        50% { transform: skew(5deg) translate(205px, -5px); }
-        60% { transform: skew(10deg) translate(195px, -5px); color: rebeccapurple }
-        80% { transform: skew(-10deg) translate(205px, -5px); }
-        100% { transform: skew(0deg) translate(200px, 0px);  color:mediumpurple}
+        0% { transform: skew(0deg) translate(210px, 0px); color: lightcyan }
+        20% { transform: skew(5deg) translate(205px, -5px); }
+        40% { transform: skew(-10deg) translate(210px, 5px); color: blue }
+        50% { transform: skew(5deg) translate(215px, -5px); }
+        60% { transform: skew(10deg) translate(205px, -5px); color: rebeccapurple }
+        80% { transform: skew(-10deg) translate(215px, -5px); }
+        100% { transform: skew(0deg) translate(210px, 0px);  color:mediumpurple}
     }
 }
 @media only screen and (min-width:1024px){
+    .float-input-span{
+        @apply absolute select-none opacity-100 block top-0 peer-[:not(:placeholder-shown)]:-top-4 group-focus-within:-top-4 peer-[:not(:placeholder-shown)]:text-lg group-focus-within:text-lg rounded-full translate-x-[10px] px-1  text-nowrap overflow-hidden font-bold bg-gradient-to-t from-transparent from-35% to-gray-900 to-35% transition-all duration-300 mt-[4px];
+    }
+    .float-input{
+        @apply rounded-lg p-[.2lh] w-full text-2xl placeholder:opacity-0 bg-transparent border box-border;
+    }
     @keyframes shakeTitle {
         0% { transform: skew(0deg) translate(350px, 0px); color: lightcyan }
         20% { transform: skew(5deg) translate(345px, -5px); }
@@ -76,4 +95,13 @@ html{
         80% { transform: skew(-10deg) translate(355px, -5px); }
         100% { transform: skew(0deg) translate(350px, 0px);  color:mediumpurple}
     }
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329;
 }
