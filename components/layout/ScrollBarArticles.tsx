@@ -1,15 +1,28 @@
 'use client'
 import Article from "@/components/layout/Article";
 import ArticleLink from "@/components/inputs/articles/ArticleLink";
-import {useQuery} from "react-query";
-import {getArticles} from "@/app/lib/ArticleServices";
-import {useEffect} from "react";
+import {useQuery, UseQueryResult} from "react-query";
+import {ArticleType, getArticles} from "@/app/lib/ArticleServices";
+import React, {useEffect} from "react";
+import Loading from "@/components/layout/Loading";
+import QueryError from "@/components/query/QueryError";
+import DOMPurify from 'dompurify'
 
 export default function ScrollBarArticles(){
-    const articleQuery = useQuery('articles',getArticles);
+    const articleQuery:UseQueryResult<[ArticleType]> = useQuery('articles',async () => {
+       let articles = JSON.parse(await getArticles());
+       if(articles.error){
+           throw new Error(articles.error.message)
+       }
+        return articles.data
+    });
+
     useEffect(()=>{
         console.log(articleQuery)
     },[articleQuery])
+
+
+
     return(
         <>
             <Article isHome={true}>
@@ -57,6 +70,26 @@ export default function ScrollBarArticles(){
                     {/*</div>*/}
                 </div>
             </Article>
+            {articleQuery.isLoading?
+                <Article>
+                    <Loading/>
+                </Article>
+                :
+                articleQuery.isError?
+                    <Article>
+                        <QueryError>Something went wrong</QueryError>
+                    </Article>
+                    :
+                    articleQuery.data?
+                        (articleQuery.data).map(article=>{
+                            return (
+                                <Article key={article._id} title={article.title} article={article}/>
+                            )
+                        })
+                        :
+                        <></>
+            }
+
             <Article id={'1'} imgSrc={'/JeremySmiling.jpg'} imgAlt={"Jeremy Cox"}>
                 <p className={' text-center font-normal'}>
                     I am a passionate DIY - everything developer, with experience designing, migrating and implementing software solutions for businesses, individuals and organizations.

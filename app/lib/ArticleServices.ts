@@ -44,11 +44,12 @@ export async function getArticles(){
     try{
         await mongoose.connect(getURI())
         let articles= await Article.find({})
-        return(articles.map(article=>{
+        return(JSON.stringify({data:articles.map(article=>{
             return cleanArticle(article)
-        }))
+        })}))
     }catch (err){
         console.error(err)
+        return(JSON.stringify({error:"Something went wrong"}))
     }
 }
 export async function getArticle(articleId:string){

@@ -1,6 +1,6 @@
 'use server'
 import EditArticle from "@/components/inputs/articles/EditArticle";
-import QueryClientWrapper from "@/components/QueryClientWrapper";
+import QueryClientWrapper from "@/components/query/QueryClientWrapper";
 interface idParams{
     articleId:string
 }
