@@ -13,7 +13,7 @@ import TextStyle from '@tiptap/extension-text-style'
 import StarterKit from '@tiptap/starter-kit'
 import React, {EventHandler, useEffect} from 'react'
 
-export default function MyTiptap({content="Placeholder Text", onUpdate, name}:{content?:string,onUpdate:any,name?:string}){
+export default function MyTiptap({content="Placeholder Text", onUpdate}:{content?:string,onUpdate:any}){
 
 
     const extensions = [
@@ -36,7 +36,7 @@ export default function MyTiptap({content="Placeholder Text", onUpdate, name}:{c
         }
     }
     return(
-        <EditorProvider extensions={extensions} content={content} slotBefore={<MenuBar/>} editorProps={editorAttributes} immediatelyRender={true}>
+        <EditorProvider extensions={extensions} content={content} slotBefore={<MenuBar/>} editorProps={editorAttributes} immediatelyRender={false}>
             <MyEditor handleUpdate={onUpdate}/>
             {/*<EditorContent editor={useCurrentEditor().editor} />*/}
         </EditorProvider>

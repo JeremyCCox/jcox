@@ -1,5 +1,6 @@
+'use client'
 import Article from "@/components/layout/Article";
-import ArticleLink from "@/components/inputs/ArticleLink";
+import ArticleLink from "@/components/inputs/articles/ArticleLink";
 import {useQuery} from "react-query";
 import {getArticles} from "@/app/lib/ArticleServices";
 import {useEffect} from "react";

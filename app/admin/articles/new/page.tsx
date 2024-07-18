@@ -1,11 +1,14 @@
 'use server'
-import ArticleCreator from "@/components/inputs/ArticleCreator";
+import ArticleCreator from "@/components/inputs/articles/ArticleCreator";
+import QueryClientWrapper from "@/components/QueryClientWrapper";
 
 export default async function Page(){
 
     return(
         <div className={'w-full grid justify-evenly my-32'}>
-            <ArticleCreator/>
+            <QueryClientWrapper>
+                <ArticleCreator/>
+            </QueryClientWrapper>
         </div>
     )
 }

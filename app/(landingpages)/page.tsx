@@ -2,7 +2,7 @@
 import HeadBar from "@/components/layout/HeadBar";
 import Article from "@/components/layout/Article";
 import ScrollBar from "@/components/layout/ScrollBar";
-import ArticleLink from "@/components/inputs/ArticleLink";
+import ArticleLink from "@/components/inputs/articles/ArticleLink";
 import ScrollBarArticles from "@/components/layout/ScrollBarArticles";
 
 export default async function Home() {
