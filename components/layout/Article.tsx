@@ -1,22 +1,32 @@
 'use client'
 import Image from "next/image";
 import React from "react";
+import DOMPurify from "dompurify";
+import {ArticleType} from "@/app/lib/ArticleServices";
 
 export default function Article(
     {
         children,
-        id,
-        title,
-        imgSrc,
-        imgAlt="Default image ALT text",
+        article,
+        id = article?._id,
+        title = article?.title,
+        description = article?.description,
+        imgSrc = article?.imgSrc,
+        imgAlt= article?.imgAlt||"Default image ALT text",
+        imgDesc=article?.imgDesc,
+
         bodyText,
         isHome = false
         }:Readonly<{
         children?: React.ReactNode;
+        article?:ArticleType,
         id?:string,
         title?:string,
+        description?:string,
         imgSrc?:string,
         imgAlt?:string,
+        imgDesc?:string,
+        bodyHTML?:string,
         bodyText?:string,
             isHome?:boolean
     }>){
@@ -25,7 +35,6 @@ export default function Article(
                 let elem = document.getElementById('scrollBar')
                 if(elem){
                         elem.scrollLeft=0;
-
                 }
         }
 

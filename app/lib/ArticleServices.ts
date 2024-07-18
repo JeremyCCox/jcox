@@ -14,8 +14,12 @@ const getURI=()=>{
 export interface ArticleType{
     _id?:string,
     title?:string,
+    description?:string,
+    imgSrc?:string,
+    imgAlt?:string,
+    imgDesc?:string,
     category?:string,
-    body?:string,
+    bodyHTML?:string,
     template?:string,
 }
 interface ReturnValues{
@@ -23,16 +27,16 @@ interface ReturnValues{
     data?:any,
     success?:boolean
 }
-const cleanArticle = (article:ArticleType) =>{
+const cleanArticle = (article:any) =>{
     if(!article._id){
         let oId = new ObjectId()
         return {
-            ...article,
+            ...article._doc,
             _id:oId.toString(),
         }
     }
     return {
-        ...article,
+        ...article._doc,
         _id:article._id.toString(),
     }
 }
