@@ -41,6 +41,9 @@
     li{
         @apply md:text-lg lg:text-xl
     }
+    .bodyHTML > p{
+        @apply min-h-[1lh]
+    }
 }
 
 html{

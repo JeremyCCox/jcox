@@ -52,13 +52,27 @@ export async function getArticles(){
         return(JSON.stringify({error:"Something went wrong"}))
     }
 }
+export async function getArticleTitles(){
+    try{
+        await mongoose.connect(getURI())
+        let articles= await Article.find({}).select('title description')
+        return(JSON.stringify({data:articles.map(article=>{
+                return cleanArticle(article)
+            })}))
+    }catch (err){
+        console.error(err)
+        return(JSON.stringify({error:"Something went wrong"}))
+    }
+}
 export async function getArticle(articleId:string){
+    console.log("Get Article", Date().toString())
     try{
         await mongoose.connect(getURI())
         let article= await Article.find({_id:articleId})
         return JSON.stringify(cleanArticle(article[0]))
     }catch (err){
         console.error(err)
+        return(JSON.stringify({error:"Article not found!"}))
     }
 }
 export async function addArticle(article:ArticleType):Promise<ReturnValues>{
@@ -73,9 +87,16 @@ export async function addArticle(article:ArticleType):Promise<ReturnValues>{
     }
 }
 export async function updateArticle(article:ArticleType){
+    console.log("Update Article", Date().toString())
+    console.log(article)
     try{
         await mongoose.connect(getURI())
         // let made = await Article.in(article)
+        let updater = await Article.findOneAndUpdate(
+            {"_id":article._id},
+                article
+            )
+        console.log(updater)
         return {success:true}
     }catch (err){
         console.error(err)

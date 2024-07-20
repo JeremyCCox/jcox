@@ -1,6 +1,6 @@
 'use server'
-import EditArticle from "@/components/inputs/articles/EditArticle";
 import QueryClientWrapper from "@/components/query/QueryClientWrapper";
+import ArticleAdmin from "@/components/articles/ArticleAdmin";
 interface idParams{
     articleId:string
 }
@@ -8,7 +8,7 @@ export default async function Page({params}:{params:idParams}){
 
     return(
         <QueryClientWrapper>
-            <EditArticle articleId={params.articleId}/>
+            <ArticleAdmin articleId={params.articleId}/>
         </QueryClientWrapper>
     )
 }

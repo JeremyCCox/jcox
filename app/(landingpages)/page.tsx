@@ -1,9 +1,9 @@
 'use server'
 import HeadBar from "@/components/layout/HeadBar";
-import Article from "@/components/layout/Article";
+import Article from "@/components/articles/Article";
 import ScrollBar from "@/components/layout/ScrollBar";
-import ArticleLink from "@/components/inputs/articles/ArticleLink";
-import ScrollBarArticles from "@/components/layout/ScrollBarArticles";
+import ArticleLink from "@/components/articles/ArticleLink";
+import ScrollBarArticles from "@/components/articles/ScrollBarArticles";
 
 export default async function Home() {
 

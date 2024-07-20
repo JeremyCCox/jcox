@@ -58,7 +58,7 @@ export default function Article(
 
             }
             {bodyHTML&&
-                <div dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(bodyHTML)}}/>
+                <div className={'bodyHTML'} dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(bodyHTML)}}/>
             }
             {children}
         </div>

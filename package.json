@@ -16,14 +16,15 @@
     "@tiptap/starter-kit": "^2.5.1",
     "@types/dompurify": "^3.0.5",
     "dompurify": "^3.1.6",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.1",
     "next": "14.2.4",
     "react": "^18",
-    "react-query": "^3.39.3",
     "react-dom": "^18",
-    "jsonwebtoken": "^9.0.2",
-    "test-jman-web-tokens": "^1.0.0"
+    "react-query": "^3.39.3",
+    "test-jman-web-tokens": "^1.0.0",
+    "use-debounce": "^10.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,6 +1,6 @@
 'use client'
-import Article from "@/components/layout/Article";
-import ArticleLink from "@/components/inputs/articles/ArticleLink";
+import Article from "@/components/articles/Article";
+import ArticleLink from "@/components/articles/ArticleLink";
 import {useQuery, UseQueryResult} from "react-query";
 import {ArticleType, getArticles} from "@/app/lib/ArticleServices";
 import React, {useEffect} from "react";
@@ -70,6 +70,11 @@ export default function ScrollBarArticles(){
                     {/*</div>*/}
                 </div>
             </Article>
+            {/*<Article>*/}
+            {/*    <pre className={'text-amber-100 mx-auto w-fit text-wrap '}>*/}
+            {/*        {JSON.stringify(articleQuery,null,2)}*/}
+            {/*    </pre>*/}
+            {/*</Article>*/}
             {articleQuery.isLoading?
                 <Article>
                     <Loading/>

@@ -1,5 +1,5 @@
 'use server'
-import ArticleCreator from "@/components/inputs/articles/ArticleCreator";
+import ArticleCreator from "@/components/articles/ArticleCreator";
 import QueryClientWrapper from "@/components/query/QueryClientWrapper";
 
 export default async function Page(){

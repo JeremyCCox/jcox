@@ -1,7 +1,7 @@
 'use client'
 import {
     Editor,
-    EditorContent,
+    EditorContent, EditorEvents,
     EditorProvider,
     FloatingMenu,
     useCurrentEditor,
@@ -42,14 +42,24 @@ export default function MyTiptap({content="Placeholder Text", onUpdate}:{content
         </EditorProvider>
     )
 }
-const MyEditor=({handleUpdate=((e:Editor)=>{console.log(e.getHTML())})})=>{
+const MyEditor=({handleUpdate}: { handleUpdate: any })=>{
     const editor =useCurrentEditor().editor;
     if(!editor){
         throw new Error("Editor is NULL!")
     }
-    editor.on('update',({editor:Editor})=>{
+    // editor.on('c',)
+    function update({editor}:{editor:Editor}){
         handleUpdate(editor)
+    }
+    useEffect(()=>{
+        // @ts-ignore
+        editor.on('update',update)
+        return(()=>{
+            // @ts-ignore
+            editor.off('update',update)
+        })
     })
+
 
     return(
         <EditorContent editor={editor}/>
