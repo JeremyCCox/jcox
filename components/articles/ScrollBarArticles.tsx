@@ -97,20 +97,20 @@ export default function ScrollBarArticles(){
             {/*            <></>*/}
             {/*}*/}
 
-            <Article id={'1'} imgSrc={'/JeremySmiling.jpg'} imgAlt={"Jeremy Cox"}>
-                <p className={' text-center font-normal'}>
-                    I am a passionate DIY - everything developer, with experience designing, migrating and implementing software solutions for businesses, individuals and organizations.
-                </p>
+            {/*<Article id={'1'} imgSrc={'/JeremySmiling.jpg'} imgAlt={"Jeremy Cox"}>*/}
+            {/*    <p className={' text-center font-normal'}>*/}
+            {/*        I am a passionate DIY - everything developer, with experience designing, migrating and implementing software solutions for businesses, individuals and organizations.*/}
+            {/*    </p>*/}
 
-            </Article>
-            <Article id={'2'} imgSrc={'/yychacks.jpg'} imgAlt={"YYCHacks YYCiosk group"} title={"YYC Hacks 2024"}>
-                {/*<h1 className={'text-4xl text-center font-bold text-yellow-100 m-2'}>Jeremy Cox</h1>*/}
-                <p>
-                    {/*YYCHacks was a fantastic event, put on by Serene Yew.*/}
-                </p>
-            </Article>
-            <Article id={'5'} title={"wrapaudit.com"}>
-            </Article>
+            {/*</Article>*/}
+            {/*<Article id={'2'} imgSrc={'/yychacks.jpg'} imgAlt={"YYCHacks YYCiosk group"} title={"YYC Hacks 2024"}>*/}
+            {/*    /!*<h1 className={'text-4xl text-center font-bold text-yellow-100 m-2'}>Jeremy Cox</h1>*!/*/}
+            {/*    <p>*/}
+            {/*        /!*YYCHacks was a fantastic event, put on by Serene Yew.*!/*/}
+            {/*    </p>*/}
+            {/*</Article>*/}
+            {/*<Article id={'5'} title={"wrapaudit.com"}>*/}
+            {/*</Article>*/}
         </>
     )
 }
