@@ -21,6 +21,8 @@ export interface ArticleType{
     category?:string,
     bodyHTML?:string,
     template?:string,
+    creationDate?:string,
+    lastEditDate?:string,
 }
 interface ReturnValues{
     error?:string,
@@ -69,21 +71,24 @@ export async function getArticle(articleId:string){
     try{
         await mongoose.connect(getURI())
         let article= await Article.find({_id:articleId})
+        if(article.length < 1){
+            return(JSON.stringify({error:"Article not found!"}))
+        }
         return JSON.stringify(cleanArticle(article[0]))
     }catch (err){
         console.error(err)
-        return(JSON.stringify({error:"Article not found!"}))
+        return(JSON.stringify({error:"Something else went wrong"}))
     }
 }
-export async function addArticle(article:ArticleType):Promise<ReturnValues>{
+export async function addArticle(article:ArticleType){
     try{
         await mongoose.connect(getURI())
-        console.log(article)
-        return {data:await Article.create(article)}
+        console.log("Article",article)
+        return JSON.stringify({data:{_id:(await Article.create(article))._id}})
     }catch (err){
         // console.error(err)
         // @ts-ignore
-        return {error:err.message}
+        return JSON.stringify({error:err.message})
     }
 }
 export async function updateArticle(article:ArticleType){

@@ -6,6 +6,7 @@ import {Editor} from "@tiptap/core";
 import {QueryClient, useMutation, useQuery, useQueryClient} from "react-query";
 import {addArticle} from "@/app/lib/ArticleServices";
 import article from "@/models/Article";
+import {useRouter} from "next/navigation";
 
 enum ArticleActionKind {
     TIPTAP = 'TIPTAP',
@@ -30,7 +31,7 @@ function articleReducer(state: ArticleState, action: ArticleAction) {
         case ArticleActionKind.TIPTAP:
             return {
                 ...state,
-                body:payload
+                bodyHTML:payload
             };
         case ArticleActionKind.TITLE:
             return {
@@ -50,8 +51,14 @@ function articleReducer(state: ArticleState, action: ArticleAction) {
 }
 export default function ArticleCreator(){
     const [state,dispatch]=useReducer(articleReducer,{title:"",description:"",category:"",body:"",template:""},undefined);
+    const router = useRouter()
     const handleSubmit=async (e: React.MouseEvent) => {
-        await addArticle(state)
+        let creation = JSON.parse(await addArticle(state));
+        if(!creation.error){
+            router.push(`/admin/articles/${creation.data._id}`)
+        } else {
+            console.log(creation.error.message)
+        }
 
         // console.log(state)
     }
@@ -67,11 +74,11 @@ export default function ArticleCreator(){
                 <button type={"button"} onClick={handleSubmit}>
                     Post new article
                 </button>
-                <div>
-                    <pre className={'text-amber-100'}>
-                        {JSON.stringify(state,null,2)}
-                    </pre>
-                </div>
+                {/*<div>*/}
+                {/*    <pre className={'text-amber-100'}>*/}
+                {/*        {JSON.stringify(state,null,2)}*/}
+                {/*    </pre>*/}
+                {/*</div>*/}
             </div>
         </>
 

@@ -6,6 +6,7 @@ import TextInput from "@/components/inputs/TextInput";
 import MyTiptap from "@/components/inputs/MyTiptap";
 import React from "react";
 import EditArticle from "@/components/articles/EditArticle";
+import {redirect, useRouter} from "next/navigation";
 
 export default function ArticleAdmin({articleId}:{articleId:string}){
     const queryClient = useQueryClient();
@@ -14,9 +15,14 @@ export default function ArticleAdmin({articleId}:{articleId:string}){
         console.log(data)
         await updateArticle(data)
     }
+    const router = useRouter()
     const articleData = useQuery(["article",articleId],async () => {
         let article = JSON.parse(await getArticle(articleId));
+        console.log(article)
         if(article.error){
+            if(article.error === "Article not found!"){
+                router.push('/admin/articles')
+            }
             throw new Error(article.error.message)
         }
         console.log(article)
@@ -55,9 +61,9 @@ export default function ArticleAdmin({articleId}:{articleId:string}){
                     :
                     <>
                         <EditArticle article={articleData.data} mutate={mutation}/>
-                        <pre className={'text-wrap'}>
-                            {JSON.stringify(mutation,null,2)}
-                        </pre>
+                        {/*<pre className={'text-wrap'}>*/}
+                        {/*    {JSON.stringify(mutation,null,2)}*/}
+                        {/*</pre>*/}
 
                     </>
             }

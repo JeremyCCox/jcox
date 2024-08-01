@@ -26,7 +26,8 @@ export default function Article(
         imgAlt?:string,
         imgDesc?:string,
         bodyHTML?:string,
-        isHome?:boolean
+        isHome?:boolean,
+        creationDate?:string, lastEditDate?:string,
     }>){
 
         const returnHome=()=>{

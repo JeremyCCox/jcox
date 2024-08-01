@@ -25,37 +25,43 @@ export default function ScrollBarArticles(){
 
     return(
         <>
-            <Article isHome={true}>
+            <Article isHome={true}  imgSrc={'/JeremySmiling.jpg'} imgAlt={"Jeremy Cox"}>
                 <div className={'grid min-h-[40vh] text-amber-100'}>
                     <h3 className={'text-center'}>
                         Jeremy Cox
                     </h3>
-                    <ArticleLink id={'link:1'} underline={true} value={"About Me"}>
+                    {/*<ArticleLink id={'link:1'} underline={true} value={"About Me"}/>*/}
+                    <p className={' text-left font-normal m-4'}>
+                        I am a passionate DIY - everything developer, with experience designing, migrating and implementing software solutions for businesses, individuals and organizations.
+                    </p>
 
-                    </ArticleLink>
-                    <h3>
-                        My Projects
-                    </h3>
-                    <ul>
-                        <li>
-                            <ArticleLink id={'link:3'} value={'Atzin - Internet management'}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:4'} value={'WRAP Desktop'}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:5'} value={'wrapaudit.com'}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:2'} value={"YYC Hacks 2024"}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:6'} value={'Raizapalooza.com'}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:7'} value={'Eco elders email campaign'}/>
-                        </li>
-                    </ul>
+                    <p className={' text-left font-normal m-4'}>
+                        This website is the amalgamation of many the projects, packages & concepts I have developed in the past few years. It is ever-changing and eternally under-construction. If you notice any inconsistencies or have and suggestions, please feel free to reach out to me! I can be reached through any of the links/services listed above!
+
+                    </p>
+                    {/*<h3>*/}
+                    {/*    My Projects*/}
+                    {/*</h3>*/}
+                    {/*<ul>*/}
+                    {/*    <li>*/}
+                    {/*        <ArticleLink id={'link:3'} value={'Atzin - Internet management'}/>*/}
+                    {/*    </li>*/}
+                    {/*    <li>*/}
+                    {/*        <ArticleLink id={'link:4'} value={'WRAP Desktop'}/>*/}
+                    {/*    </li>*/}
+                    {/*    <li>*/}
+                    {/*        <ArticleLink id={'link:5'} value={'wrapaudit.com'}/>*/}
+                    {/*    </li>*/}
+                    {/*    <li>*/}
+                    {/*        <ArticleLink id={'link:2'} value={"YYC Hacks 2024"}/>*/}
+                    {/*    </li>*/}
+                    {/*    <li>*/}
+                    {/*        <ArticleLink id={'link:6'} value={'Raizapalooza.com'}/>*/}
+                    {/*    </li>*/}
+                    {/*    <li>*/}
+                    {/*        <ArticleLink id={'link:7'} value={'Eco elders email campaign'}/>*/}
+                    {/*    </li>*/}
+                    {/*</ul>*/}
                     {/*<div className={'w-3/4 left-0'}>*/}
                     {/*    <h3 className={'text-right'}>*/}
                     {/*        External Links*/}

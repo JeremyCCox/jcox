@@ -36,12 +36,9 @@ export default function EditArticle({article,mutate}:Readonly<{article:ArticleTy
     return(
         <>
             <div className={'grid'}>
-                <TextInput type={'text'} title={"Title"} name={'title'} id={'title'} onChange={editArticle}/>
-                <TextInput type={'text'} title={"Description"} name={'description'} id={'description'} onChange={editArticle} />
+                <TextInput type={'text'} title={"Title"} name={'title'} id={'title'} value={article.title} onChange={editArticle}/>
+                <TextInput type={'text'} title={"Description"} name={'description'} id={'description'} value={article.description} onChange={editArticle} />
                 <MyTiptap content={article.bodyHTML}  onUpdate={editArticleBody}/>
-                <button type={"button"} onClick={()=>{}} >
-                    Post new article
-                </button>
             </div>
         </>
     )
