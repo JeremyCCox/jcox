@@ -48,11 +48,11 @@ export default function OutLinks(){
         }
     })
     return(
-        <div className={'flex relative'}>
+        <div className={'flex relative '}>
             <h4 className={'hidden md:block absolute text-center w-full text-white'}>
                 You can find me:
             </h4>
-            <div className={'text-amber-100 grid md:flex justify-end w-full fixed md:relative px-2 md:px-0'}>
+            <div className={'text-amber-100 grid md:flex justify-end w-full fixed md:relative px-2 md:px-0 '}>
                 <div className={`flex ${kanit.className}`}>
                     <div className={`relative group my-auto ${active?'w-[280px] md:w-[370px] lg:w-[545px] ':'w-0'} overflow-hidden transition-all duration-700`} onClick={()=>console.log("adada")}>
                         <span className={'flex bg-gray-900 rounded-lg'}>
@@ -64,16 +64,16 @@ export default function OutLinks(){
                             </button>
                         </span>
                     </div>
-                    <button className={'text-white font-extrabold text-5xl md:text-6xl lg:text-8xl mx-2 px-1' } onClick={()=> {setActive(!active)}}>
+                    <button className={'text-white font-extrabold text-5xl md:text-6xl lg:text-8xl mx-2 px-1 ' } onClick={()=> {setActive(!active)}}>
                         M
                     </button>
                 </div>
             </div>
-            <div className={`text-amber-100 grid md:flex justify-end  ${active?'md:w-0':'md:w-[280px] lg:w-[350px]'} transition-w duration-700 px-4 md:px-0 right-0 fixed mt-20 md:mt-0 md:relative `}>
-                <a href={'https://github.com/JeremyCCox'} className={'hover:cursor-pointer my-6 md:mx-6 lg:my-auto w-[44px] md:w-[50px] lg:w-[75px]'} target={'_blank'}>
+            <div className={`text-amber-100 grid md:flex justify-end   ${active?'md:w-0':'md:w-[280px] lg:w-[350px]'} transition-w duration-700 px-4 md:px-0 right-0 fixed mt-20 md:mt-0 md:relative `}>
+                <a href={'https://github.com/JeremyCCox'} className={'hover:cursor-pointer my-6 md:mx-6 lg:my-auto bg-gray-900 md:bg-transparent rounded-full w-[44px] md:w-[50px] lg:w-[75px]'} target={'_blank'}>
                     <Image src={'/github-mark-white.png'} alt={'github url'} sizes={'100vw'} width={0} height={0} style={imageSize}/>
                 </a>
-                <a href={'https://www.linkedin.com/in/jeremy-cox-aa44531b7/'} className={'hover:cursor-pointer my-6 md:mx-6 lg:my-auto w-[44px] md:w-[50px] lg:w-[75px]'} target={'_blank'}>
+                <a href={'https://www.linkedin.com/in/jeremy-cox-aa44531b7/'} className={'hover:cursor-pointer my-6 bg-gray-900 md:bg-transparent md:mx-6 lg:my-auto w-[44px] md:w-[50px] lg:w-[75px]'} target={'_blank'}>
                     <Image src={'/In-White.png'} alt={'LinkedIn url'} sizes={'100vw'} width={0} height={0} style={imageSize}/>
                 </a>
             </div>

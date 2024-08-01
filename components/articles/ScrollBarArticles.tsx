@@ -9,17 +9,17 @@ import QueryError from "@/components/query/QueryError";
 import DOMPurify from 'dompurify'
 
 export default function ScrollBarArticles(){
-    const articleQuery:UseQueryResult<[ArticleType]> = useQuery('articles',async () => {
-       let articles = JSON.parse(await getArticles());
-       if(articles.error){
-           throw new Error(articles.error.message)
-       }
-        return articles.data
-    });
+    // const articleQuery:UseQueryResult<[ArticleType]> = useQuery('articles',async () => {
+    //    let articles = JSON.parse(await getArticles());
+    //    if(articles.error){
+    //        throw new Error(articles.error.message)
+    //    }
+    //     return articles.data
+    // });
 
-    useEffect(()=>{
-        console.log(articleQuery)
-    },[articleQuery])
+    // useEffect(()=>{
+    //     console.log(articleQuery)
+    // },[articleQuery])
 
 
 
@@ -76,30 +76,26 @@ export default function ScrollBarArticles(){
                     {/*</div>*/}
                 </div>
             </Article>
-            {/*<Article>*/}
-            {/*    <pre className={'text-amber-100 mx-auto w-fit text-wrap '}>*/}
-            {/*        {JSON.stringify(articleQuery,null,2)}*/}
-            {/*    </pre>*/}
-            {/*</Article>*/}
-            {articleQuery.isLoading?
-                <Article>
-                    <Loading/>
-                </Article>
-                :
-                articleQuery.isError?
-                    <Article>
-                        <QueryError>Something went wrong</QueryError>
-                    </Article>
-                    :
-                    articleQuery.data?
-                        (articleQuery.data).map(article=>{
-                            return (
-                                <Article key={article._id} title={article.title} article={article}/>
-                            )
-                        })
-                        :
-                        <></>
-            }
+
+            {/*{articleQuery.isLoading?*/}
+            {/*    <Article>*/}
+            {/*        <Loading/>*/}
+            {/*    </Article>*/}
+            {/*    :*/}
+            {/*    articleQuery.isError?*/}
+            {/*        <Article>*/}
+            {/*            <QueryError>Something went wrong</QueryError>*/}
+            {/*        </Article>*/}
+            {/*        :*/}
+            {/*        articleQuery.data?*/}
+            {/*            (articleQuery.data).map(article=>{*/}
+            {/*                return (*/}
+            {/*                    <Article key={article._id} title={article.title} article={article}/>*/}
+            {/*                )*/}
+            {/*            })*/}
+            {/*            :*/}
+            {/*            <></>*/}
+            {/*}*/}
 
             <Article id={'1'} imgSrc={'/JeremySmiling.jpg'} imgAlt={"Jeremy Cox"}>
                 <p className={' text-center font-normal'}>
@@ -110,9 +106,7 @@ export default function ScrollBarArticles(){
             <Article id={'2'} imgSrc={'/yychacks.jpg'} imgAlt={"YYCHacks YYCiosk group"} title={"YYC Hacks 2024"}>
                 {/*<h1 className={'text-4xl text-center font-bold text-yellow-100 m-2'}>Jeremy Cox</h1>*/}
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pulvinar dictum diam eu lacinia. Curabitur a vulputate urna. Etiam pulvinar libero nisl. Praesent luctus dui lacus, eget varius turpis dictum sit amet. Nunc ut justo vulputate, mollis dolor sed, tincidunt libero. Cras vel risus quis dolor volutpat gravida eu ut leo. Ut bibendum in mauris sed rhoncus. Pellentesque dignissim, sem nec finibus gravida, neque quam elementum urna, eget porta nibh tortor at ante. Donec vitae odio elementum, venenatis elit ac, porta ante. Etiam dictum consequat ante, ut euismod arcu auctor non. Cras nec ullamcorper orci. Aenean mollis urna a efficitur ornare. Nam ac fermentum turpis. Maecenas ut condimentum nibh, in posuere quam.
-
-                    Nunc a arcu semper, sagittis odio quis, venenatis nunc. Maecenas lacus nisi, laoreet sit amet nisi quis, posuere vulputate mi. Integer sed orci ut libero feugiat accumsan quis quis nunc. Ut et facilisis ex, nec feugiat lacus. In id dui nibh. Sed eget sem egestas, malesuada orci a, egestas diam. In elementum, ipsum vel molestie dapibus, lorem orci mattis massa, eget ullamcorper nibh purus sit amet tellus. Integer eu enim ac justo tincidunt fringilla.
+                    {/*YYCHacks was a fantastic event, put on by Serene Yew.*/}
                 </p>
             </Article>
             <Article id={'5'} title={"wrapaudit.com"}>
