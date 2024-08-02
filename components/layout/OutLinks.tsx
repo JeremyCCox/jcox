@@ -23,7 +23,7 @@ export default function OutLinks(){
     },[active])
 
     const calcImages =()=>{
-        let sqr = 40
+        let sqr;
         switch(true){
             case(window.innerWidth>1024):
                 sqr = 75;
@@ -74,7 +74,7 @@ export default function OutLinks(){
                     <Image src={'/github-mark-white.png'} alt={'github url'} sizes={'100vw'} width={0} height={0} style={imageSize}/>
                 </a>
                 <a href={'https://www.linkedin.com/in/jeremy-cox-aa44531b7/'} className={'hover:cursor-pointer my-6 bg-gray-900 md:bg-transparent md:mx-6 lg:my-auto w-[44px] md:w-[50px] lg:w-[75px]'} target={'_blank'}>
-                    <Image src={'/In-White.png'} alt={'LinkedIn url'} sizes={'100vw'} width={0} height={0} style={imageSize}/>
+                    <Image src={'/In-White-96@2x.png'} alt={'LinkedIn url'} sizes={'100vw'} width={0} height={0} style={imageSize}/>
                 </a>
             </div>
 
