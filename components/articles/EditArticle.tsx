@@ -1,8 +1,7 @@
 'use client'
-import {useMutation, useQuery, useQueryClient} from "react-query";
-import {ArticleType, getArticle} from "@/app/lib/ArticleServices";
+import {useQueryClient} from "react-query";
+import {ArticleType} from "@/app/lib/ArticleServices";
 import {useDebouncedCallback} from "use-debounce";
-import Loading from "@/components/layout/Loading";
 import TextInput from "@/components/inputs/TextInput";
 import MyTiptap from "@/components/inputs/MyTiptap";
 import React, {useEffect, useState} from "react";
@@ -12,7 +11,6 @@ export default function EditArticle({article,mutate}:Readonly<{article:ArticleTy
     const [trackedArticle,setTrackedArticle]= useState(article)
     const queryClient = useQueryClient();
     const updateArticle = useDebouncedCallback(()=>{
-        console.log(mutate)
             mutate.mutate(trackedArticle)
         }
     ,2500)
@@ -35,10 +33,10 @@ export default function EditArticle({article,mutate}:Readonly<{article:ArticleTy
         700)
     return(
         <>
-            <div className={'grid'}>
+            <div className={'flex flex-col min-h-[80vh] mx-20 my-24 border-amber-100'}>
                 <TextInput type={'text'} title={"Title"} name={'title'} id={'title'} value={article.title} onChange={editArticle}/>
                 <TextInput type={'text'} title={"Description"} name={'description'} id={'description'} value={article.description} onChange={editArticle} />
-                <MyTiptap content={article.bodyHTML}  onUpdate={editArticleBody}/>
+                <MyTiptap content={article.bodyHTML} onUpdate={editArticleBody}  className={"min-h-[60vh]"} />
             </div>
         </>
     )

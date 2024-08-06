@@ -1,7 +1,6 @@
 'use client'
 import {
     Editor,
-    EditorContent, EditorEvents,
     EditorProvider,
     FloatingMenu,
     useCurrentEditor,
@@ -13,7 +12,7 @@ import TextStyle from '@tiptap/extension-text-style'
 import StarterKit from '@tiptap/starter-kit'
 import React, {EventHandler, useEffect} from 'react'
 
-export default function MyTiptap({content="Placeholder Text", onUpdate}:{content?:string,onUpdate:any}){
+export default function MyTiptap({content="Placeholder Text", onUpdate,classNameOverride,className}:{content?:string,onUpdate:any,classNameOverride?:string,className?:string}){
 
 
     const extensions = [
@@ -32,37 +31,15 @@ export default function MyTiptap({content="Placeholder Text", onUpdate}:{content
     ]
     const editorAttributes={
         attributes:{
-            class:"min-h-[1.2lh] grow p-[.1lh] border border-black mx-2 mb-2 text-overflow bg-transparent text-black"
+            class:classNameOverride?classNameOverride:`min-h-[1.2lh] h-full  p-[.4lh] border mx-2 mb-2 text-overflow bg-transparent text-black ${className}`
         }
     }
+    const handleUpdate=(props:{editor:Editor,transaction:any})=>{
+        onUpdate(props.editor)
+    }
     return(
-        <EditorProvider extensions={extensions} content={content} slotBefore={<MenuBar/>} editorProps={editorAttributes} immediatelyRender={false}>
-            <MyEditor handleUpdate={onUpdate}/>
-            {/*<EditorContent editor={useCurrentEditor().editor} />*/}
+        <EditorProvider extensions={extensions} onUpdate={handleUpdate}  content={content} slotBefore={<MenuBar/>} editorProps={editorAttributes} immediatelyRender={false}>
         </EditorProvider>
-    )
-}
-const MyEditor=({handleUpdate}: { handleUpdate: any })=>{
-    const editor =useCurrentEditor().editor;
-    if(!editor){
-        throw new Error("Editor is NULL!")
-    }
-    // editor.on('c',)
-    function update({editor}:{editor:Editor}){
-        handleUpdate(editor)
-    }
-    useEffect(()=>{
-        // @ts-ignore
-        editor.on('update',update)
-        return(()=>{
-            // @ts-ignore
-            editor.off('update',update)
-        })
-    })
-
-
-    return(
-        <EditorContent editor={editor}/>
     )
 }
 
@@ -74,7 +51,7 @@ const MenuBar = () => {
     }
 
     return (
-        <div className={'border-t border-x border-black mx-2 mt-2 bg-white '}>
+        <div className={'border-t border-x border-black mx-2 mt-2 bg-white m-2'}>
             <div className={'flex md:justify-center transition: align-bottom overflow-clip'}>
                 <div className={'flex align-bottom text-lg'}>
                     <button type={'button'}

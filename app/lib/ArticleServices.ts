@@ -57,7 +57,7 @@ export async function getArticles(){
 export async function getArticleTitles(){
     try{
         await mongoose.connect(getURI())
-        let articles= await Article.find({}).select('title description')
+        let articles= await Article.find({}).select('title description creationDate')
         return(JSON.stringify({data:articles.map(article=>{
                 return cleanArticle(article)
             })}))

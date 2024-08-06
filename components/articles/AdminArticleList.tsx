@@ -6,6 +6,7 @@ import Loading from "@/components/layout/Loading";
 import QueryError from "@/components/query/QueryError";
 import AdminArticleLink from "@/components/articles/AdminArticleLink";
 import {useRouter} from "next/navigation";
+import {useEffect} from "react";
 
 export default function AdminArticleList(){
     const router = useRouter()
@@ -14,11 +15,16 @@ export default function AdminArticleList(){
         if(titles.error){
             throw new Error(titles.error.message)
         }
+        console.log(titles)
         return titles.data
     })
     const goToNew=()=>{
         router.push('/admin/articles/new')
     }
+    useEffect(()=>{
+        console.log(articleTitles)
+    },[articleTitles]);
+
     return(
         <div className={'mt-16 grid justify-evenly'}>
            <Article title={'Jcox.ca Admin'}>
@@ -46,6 +52,9 @@ export default function AdminArticleList(){
                            <QueryError/>
 
                }
+               <pre className={'text-amber-100'}>
+                   {JSON.stringify(articleTitles.data,null,2)}
+               </pre>
            </Article>
         </div>
     )

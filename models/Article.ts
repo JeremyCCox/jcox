@@ -10,7 +10,7 @@ interface Article{
     category?:string,
     bodyHTML?:string,
     template?:string,
-
+    creationDate?:mongoose.Date,
 }
 
 const articleSchema= new Schema<Article>({
@@ -22,6 +22,7 @@ const articleSchema= new Schema<Article>({
     category:String,
     bodyHTML:String,
     template:Number,
+    creationDate: {type:Date,default:Date.now},
 })
 const Article = mongoose.models.Article||model("Article",articleSchema)
 export default Article

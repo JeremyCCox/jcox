@@ -9,13 +9,13 @@ import QueryError from "@/components/query/QueryError";
 import DOMPurify from 'dompurify'
 
 export default function ScrollBarArticles(){
-    // const articleQuery:UseQueryResult<[ArticleType]> = useQuery('articles',async () => {
-    //    let articles = JSON.parse(await getArticles());
-    //    if(articles.error){
-    //        throw new Error(articles.error.message)
-    //    }
-    //     return articles.data
-    // });
+    const articleQuery:UseQueryResult<[ArticleType]> = useQuery('articles',async () => {
+       let articles = JSON.parse(await getArticles());
+       if(articles.error){
+           throw new Error(articles.error.message)
+       }
+        return articles.data
+    });
 
     // useEffect(()=>{
     //     console.log(articleQuery)
@@ -39,29 +39,29 @@ export default function ScrollBarArticles(){
                         This website is the amalgamation of many the projects, packages & concepts I have developed in the past few years. It is ever-changing and eternally under-construction. If you notice any inconsistencies or have and suggestions, please feel free to reach out to me! I can be reached through any of the links/services listed above!
 
                     </p>
-                    {/*<h3>*/}
-                    {/*    My Projects*/}
-                    {/*</h3>*/}
-                    {/*<ul>*/}
-                    {/*    <li>*/}
-                    {/*        <ArticleLink id={'link:3'} value={'Atzin - Internet management'}/>*/}
-                    {/*    </li>*/}
-                    {/*    <li>*/}
-                    {/*        <ArticleLink id={'link:4'} value={'WRAP Desktop'}/>*/}
-                    {/*    </li>*/}
-                    {/*    <li>*/}
-                    {/*        <ArticleLink id={'link:5'} value={'wrapaudit.com'}/>*/}
-                    {/*    </li>*/}
-                    {/*    <li>*/}
-                    {/*        <ArticleLink id={'link:2'} value={"YYC Hacks 2024"}/>*/}
-                    {/*    </li>*/}
-                    {/*    <li>*/}
-                    {/*        <ArticleLink id={'link:6'} value={'Raizapalooza.com'}/>*/}
-                    {/*    </li>*/}
-                    {/*    <li>*/}
-                    {/*        <ArticleLink id={'link:7'} value={'Eco elders email campaign'}/>*/}
-                    {/*    </li>*/}
-                    {/*</ul>*/}
+                    <h3>
+                        My Projects
+                    </h3>
+                    <ul>
+                        <li>
+                            <ArticleLink id={'link:3'} value={'Atzin - Internet management'}/>
+                        </li>
+                        <li>
+                            <ArticleLink id={'link:4'} value={'WRAP Desktop'}/>
+                        </li>
+                        <li>
+                            <ArticleLink id={'link:5'} value={'wrapaudit.com'}/>
+                        </li>
+                        <li>
+                            <ArticleLink id={'link:2'} value={"YYC Hacks 2024"}/>
+                        </li>
+                        <li>
+                            <ArticleLink id={'link:6'} value={'Raizapalooza.com'}/>
+                        </li>
+                        <li>
+                            <ArticleLink id={'link:7'} value={'Eco elders email campaign'}/>
+                        </li>
+                    </ul>
                     {/*<div className={'w-3/4 left-0'}>*/}
                     {/*    <h3 className={'text-right'}>*/}
                     {/*        External Links*/}
@@ -77,25 +77,25 @@ export default function ScrollBarArticles(){
                 </div>
             </Article>
 
-            {/*{articleQuery.isLoading?*/}
-            {/*    <Article>*/}
-            {/*        <Loading/>*/}
-            {/*    </Article>*/}
-            {/*    :*/}
-            {/*    articleQuery.isError?*/}
-            {/*        <Article>*/}
-            {/*            <QueryError>Something went wrong</QueryError>*/}
-            {/*        </Article>*/}
-            {/*        :*/}
-            {/*        articleQuery.data?*/}
-            {/*            (articleQuery.data).map(article=>{*/}
-            {/*                return (*/}
-            {/*                    <Article key={article._id} title={article.title} article={article}/>*/}
-            {/*                )*/}
-            {/*            })*/}
-            {/*            :*/}
-            {/*            <></>*/}
-            {/*}*/}
+            {articleQuery.isLoading?
+                <Article>
+                    <Loading/>
+                </Article>
+                :
+                articleQuery.isError?
+                    <Article>
+                        <QueryError>Something went wrong</QueryError>
+                    </Article>
+                    :
+                    articleQuery.data?
+                        (articleQuery.data).map(article=>{
+                            return (
+                                <Article key={article._id} title={article.title} article={article}/>
+                            )
+                        })
+                        :
+                        <></>
+            }
 
             {/*<Article id={'1'} imgSrc={'/JeremySmiling.jpg'} imgAlt={"Jeremy Cox"}>*/}
             {/*    <p className={' text-center font-normal'}>*/}

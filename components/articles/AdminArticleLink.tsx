@@ -12,16 +12,12 @@ export default function AdminArticleLink({children,article,underline=false}:Read
     return(
         <>
             <button type={"button"} className={'hover:font-bold hover:tracking-tight'}  onClick={handleClick}>
-                <h4 className={`w-fit m-auto  ${!underline&&"hover:underline"}`}>
-                    {underline&&article.title&&
-                        <span className={"absolute no-underline translate-y-[16px]"}>
-                        {Array.from(Array(Math.floor(article.title.length)).fill('-')).map(val=>{
-                            return (val)
-                        })}
-                            &gt;
-                    </span>
+                <h4 className={`w-full flex justify-between bg-gray-700 border-gray-900 border-2 hover:underline`}>
+                    <span className={'w-2/3 text-left px-8'}>{article.title}</span>
+
+                    {!underline&&article.creationDate&&
+                        new Date(article.creationDate).toDateString()
                     }
-                    {article.title&&article.title}
                 </h4>
             </button>
             {children}
