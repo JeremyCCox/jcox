@@ -3,7 +3,7 @@ name: remote ssh command
 on: 
   push:
     branches:
-      -  'JeremyCCox-workflows'
+      -  'release'
 jobs:
   setup:
     name: Setup
@@ -42,6 +42,7 @@ jobs:
         envs: REPO
         script: |
           cd ~/$REPO
+          git checkout release
           docker compose build
           docker compose down
-          docker compose up
+          docker compose up -d
