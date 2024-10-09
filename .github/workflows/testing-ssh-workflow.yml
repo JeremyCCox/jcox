@@ -18,10 +18,4 @@ jobs:
         port: ${{ secrets.PORT }}
         envs: REPO
         script: |
-          echo "Repo is: $REPO"
-          mkdir docker
-          cd docker
-          mkdir $REPO
-          cd $REPO
-          pwd
           git clone https://github.com/$REPO.git
