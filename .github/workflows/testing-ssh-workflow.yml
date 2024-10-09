@@ -1,0 +1,48 @@
+
+name: remote ssh command
+on: 
+  push:
+    branches:
+      -  'release'
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setting up environment
+        uses: appleboy/ssh-action@v1.1.0
+        env:
+          REPO:  ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }} 
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: REPO, OWNER
+          script:  |
+            mkdir $OWNER
+            cd $OWNER
+            git clone https://github.com/$REPO.git
+            cd ~/$REPO
+            git pull
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using key
+      uses: appleboy/ssh-action@v1.1.0
+      env:
+        REPO: ${{ github.repository }}
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        envs: REPO
+        script: |
+          cd ~/$REPO
+          git checkout release
+          docker compose build
+          docker compose down
+          docker compose up -d
