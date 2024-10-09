@@ -3,7 +3,7 @@ name: remote ssh command
 on: 
   push:
     branches:
-      -  'publish'
+      -  'JeremyCCox-workflows'
 jobs:
   setup:
     name: Setup
