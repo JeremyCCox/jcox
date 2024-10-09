@@ -10,7 +10,7 @@ jobs:
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.1.0
       env:
-        REPO: ${{env.GITHUB_REPOSITORY}}
+        REPO: ${{GITHUB.GITHUB_REPOSITORY}}
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
