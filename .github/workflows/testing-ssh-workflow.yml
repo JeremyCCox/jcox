@@ -13,13 +13,17 @@ jobs:
         uses: appleboy/ssh-action@v1.1.0
         env:
           REPO:  ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }} 
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          envs: REPO
-          script: git clone https://github.com/$REPO.git
+          envs: REPO, OWNER
+          script:  |
+            mkdir $OWNER
+            cd $OWNER
+            git clone https://github.com/$REPO.git
   build:
     name: Build
     runs-on: ubuntu-latest
