@@ -24,6 +24,8 @@ jobs:
             mkdir $OWNER
             cd $OWNER
             git clone https://github.com/$REPO.git
+            cd $REPO
+            git pull
   build:
     name: Build
     runs-on: ubuntu-latest
