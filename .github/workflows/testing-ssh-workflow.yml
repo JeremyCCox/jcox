@@ -27,6 +27,7 @@ jobs:
             cd ~/$REPO
             git pull
   build:
+    needs:  setup
     name: Build
     runs-on: ubuntu-latest
     steps:
