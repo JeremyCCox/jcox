@@ -39,7 +39,7 @@ jobs:
         port: ${{ secrets.PORT }}
         envs: REPO
         script: |
-          cd /$REPO
+          cd ~/$REPO
           docker compose build
           docker compose down
           docker compose up
