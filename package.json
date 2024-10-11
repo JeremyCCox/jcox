@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "dotenvx run -- next dev",
+    "build": "dotenvx run -- next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.18.1",
     "@tiptap/extension-color": "^2.5.1",
     "@tiptap/extension-list-item": "^2.5.1",
     "@tiptap/extension-text-style": "^2.5.1",
