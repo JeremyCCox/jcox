@@ -17,9 +17,9 @@ export default function ScrollBarArticles(){
         return articles.data
     });
 
-    // useEffect(()=>{
-    //     console.log(articleQuery)
-    // },[articleQuery])
+    useEffect(()=>{
+        console.log(process.env.NEXT_PUBLIC_ENV_VAR4)
+    },[articleQuery])
 
 
 
