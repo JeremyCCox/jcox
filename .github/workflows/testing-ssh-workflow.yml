@@ -1,6 +1,6 @@
 
 name: remote ssh command
-on: 
+on:
   push:
     branches:
       -  'release'
@@ -13,7 +13,7 @@ jobs:
         uses: appleboy/ssh-action@v1.1.0
         env:
           REPO:  ${{ github.repository }}
-          OWNER: ${{ github.repository_owner }} 
+          OWNER: ${{ github.repository_owner }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -31,19 +31,22 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using key
-      uses: appleboy/ssh-action@v1.1.0
-      env:
-        REPO: ${{ github.repository }}
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        envs: REPO
-        script: |
-          cd ~/$REPO
-          git checkout release
-          docker compose build
-          docker compose down
-          docker compose up -d
+      - name: executing remote ssh commands using key
+        uses: appleboy/ssh-action@v1.1.0
+        env:
+          REPO: ${{ github.repository }}
+          DOTENV_PRIVATE_KEY: ${{secrets.DOTENV_PRIVATE_KEY }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: REPO, DOTENV_PRIVATE_KEY
+          script: |
+            cd ~/$REPO
+            git checkout release
+            echo "#.env" > .env.keys
+            echo "DOTENV_PRIVATE_KEY=\"$DOTENV_PRIVATE_KEY\"" >> .env.keys
+            docker compose build
+            docker compose down
+            docker compose up -d
