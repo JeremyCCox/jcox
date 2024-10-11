@@ -46,6 +46,7 @@ export default function DownloadButton(){
     const getReleases = async () => {
         const queryParams = new URLSearchParams()
         queryParams.set("per_page", "5")
+        console.log('proc env',process.env["NEXT_PUBLIC_GIT_RELEASES_READ_TOKEN"])
         let res = await request('GET /repos/{owner}/{repo}/releases',{
             owner: "JeremyCCox",
             repo:"jman-mod-installer",
