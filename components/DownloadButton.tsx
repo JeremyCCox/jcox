@@ -10,7 +10,7 @@ interface ReleaseType{
     [key:string]:any,
 }
 
-export default function DownloadButton(){
+export default function DownloadButton({owner,repository}:Readonly<{owner:string,repository:string}>){
 
     const [releaseSource, setReleaseSource] = useState({} as ReleaseType)
     const [releases,setReleases] = useState({}as ReleasesType)
@@ -46,10 +46,9 @@ export default function DownloadButton(){
     const getReleases = async () => {
         const queryParams = new URLSearchParams()
         queryParams.set("per_page", "5")
-        console.log('proc env',process.env["NEXT_PUBLIC_ENV_VAR4"])
         let res = await request('GET /repos/{owner}/{repo}/releases',{
-            owner: "JeremyCCox",
-            repo:"jman-mod-installer",
+            owner:owner,
+            repo:repository,
             headers:{
                 "X-GitHub-Api-Version": "2022-11-28",
                 authorization: process.env["NEXT_PUBLIC_GIT_RELEASES_READ_TOKEN"]
