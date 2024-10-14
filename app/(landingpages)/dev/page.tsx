@@ -1,5 +1,5 @@
 import DownloadButton from "@/components/DownloadButton";
-import WidgetsPanel from "@/components/dev/WidgetsPanel";
+import WidgetsPanel from "@/components/dev/widgets/WidgetsPanel";
 export default function Page(){
 
 

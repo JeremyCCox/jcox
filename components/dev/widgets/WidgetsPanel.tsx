@@ -1,7 +1,8 @@
 'use client'
 
 import {ChangeEvent, MouseEvent, useEffect, useState } from "react"
-import DownloadButton from "../DownloadButton"
+import DownloadButton from "../../DownloadButton"
+import NewWidget from "./NewWidget"
 
 export interface WidgetType{
     name:string,
@@ -16,42 +17,37 @@ const selectableWidgets = [
 ]
 
 export default function WidgetsPanel(){
+    const [newWidget,setNewWidget]=useState<WidgetType>()
     const [widgets,setWidgets]=useState<WidgetType[]>([])
     const handleInput=(e:ChangeEvent<HTMLInputElement>)=>{
-
         setWidgets([{...widgets[0], values:{...widgets[0].values, [e.currentTarget.id]:e.currentTarget.value }}])
     }
-    const newWidget=(e:MouseEvent<HTMLButtonElement>)=>{
-        setWidgets([
+    const addNewWidget=(e:MouseEvent<HTMLButtonElement>)=>{
+        setNewWidget(
             {
                 name:"Releases Button",
                 component:"releaseDownload",
                 parameters:["owner", "repository"],
                 values:{}
             }
-        ])
+        )
     }
+    useEffect(() => {
+        console.log(widgets)
+    }, [widgets]);
     return(
         <>
             <div className={'border-2 w-[400px] '}>
                 {selectableWidgets.map(widget=>{
                     return(
-                        <button key={widget.name} id={widget.name} type={"button"} onClick={newWidget}>
+                        <button key={widget.name} id={widget.name} type={"button"} onClick={addNewWidget}>
                             {widget.name}
                         </button>
                     )
                 })}
-                <div className={'grid text-amber-100'}>
-
-                    {widgets[0] && widgets[0].parameters.map(param=>{
-                        return(
-                            <label>
-                                {param}
-                                <input className={'bg-gray-700 px-2'} type={'text'} id={param} onChange={handleInput} />
-                            </label>
-                        )
-                    })}
-                </div>
+                {newWidget&&
+                    <NewWidget widget={newWidget} addWidget={(widget:WidgetType)=>{console.log(widget);setWidgets(prevState=>[...prevState, widget])}} />
+                }
             </div>
             {widgets.map(widget=>{
                 return(
