@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import React from "react";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import {ArticleType} from "@/app/lib/ArticleServices";
 
 export default function Article(
@@ -15,7 +15,8 @@ export default function Article(
         imgAlt= article?.imgAlt||"Default image ALT text",
         imgDesc=article?.imgDesc,
         bodyHTML=article?.bodyHTML,
-        isHome = false
+            goBack = true,
+            isHome = false
         }:Readonly<{
         children?: React.ReactNode;
         article?:ArticleType,
