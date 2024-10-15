@@ -17,9 +17,6 @@ export default function ScrollBarArticles(){
         return articles.data
     });
 
-    useEffect(()=>{
-        console.log(process.env.NEXT_PUBLIC_ENV_VAR4)
-    },[articleQuery])
 
 
 
@@ -43,6 +40,23 @@ export default function ScrollBarArticles(){
                         My Projects
                     </h3>
                     <ul>
+                        {articleQuery.isLoading?
+                            <li>Loading Articles</li>
+                            :
+                            articleQuery.isError?
+                                <li>Error Loading Articles!</li>
+                                :
+                                articleQuery.data?
+                                    (articleQuery.data).map(article=>{
+                                        return (
+                                            <li key={article._id}>
+                                                <a href={`article/${article._id}`}>{article.title||article._id}</a>
+                                            </li>
+                                        )
+                                    })
+                                    :
+                                    <></>
+                        }
                         <li>
                             <ArticleLink id={'link:3'} value={'Atzin - Internet management'}/>
                         </li>
@@ -77,25 +91,25 @@ export default function ScrollBarArticles(){
                 </div>
             </Article>
 
-            {articleQuery.isLoading?
-                <Article>
-                    <Loading/>
-                </Article>
-                :
-                articleQuery.isError?
-                    <Article>
-                        <QueryError>Something went wrong</QueryError>
-                    </Article>
-                    :
-                    articleQuery.data?
-                        (articleQuery.data).map(article=>{
-                            return (
-                                <Article key={article._id} title={article.title} article={article}/>
-                            )
-                        })
-                        :
-                        <></>
-            }
+            {/*{articleQuery.isLoading?*/}
+            {/*    <Article>*/}
+            {/*        <Loading/>*/}
+            {/*    </Article>*/}
+            {/*    :*/}
+            {/*    articleQuery.isError?*/}
+            {/*        <Article>*/}
+            {/*            <QueryError>Something went wrong</QueryError>*/}
+            {/*        </Article>*/}
+            {/*        :*/}
+            {/*        articleQuery.data?*/}
+            {/*            (articleQuery.data).map(article=>{*/}
+            {/*                return (*/}
+            {/*                    <Article key={article._id} title={article.title} article={article}/>*/}
+            {/*                )*/}
+            {/*            })*/}
+            {/*            :*/}
+            {/*            <></>*/}
+            {/*}*/}
 
             {/*<Article id={'1'} imgSrc={'/JeremySmiling.jpg'} imgAlt={"Jeremy Cox"}>*/}
             {/*    <p className={' text-center font-normal'}>*/}

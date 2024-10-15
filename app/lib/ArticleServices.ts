@@ -3,6 +3,7 @@
 import mongoose from "mongoose";
 import Article from "@/models/Article";
 import {ObjectId} from 'mongodb'
+import {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
 
 const getURI=()=>{
     const mongodb_uri = process.env["MONGODB_URI"];
@@ -20,6 +21,7 @@ export interface ArticleType{
     imgDesc?:string,
     category?:string,
     bodyHTML?:string,
+    widgets?:WidgetType[],
     template?:string,
     creationDate?:string,
     lastEditDate?:string,
