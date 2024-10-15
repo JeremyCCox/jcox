@@ -3,6 +3,7 @@
 import {ChangeEvent, MouseEvent, useEffect, useState } from "react"
 import DownloadButton from "../../DownloadButton"
 import NewWidget from "./NewWidget"
+import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
 
 export interface WidgetType{
     name:string,
@@ -51,17 +52,7 @@ export default function WidgetsPanel(){
             </div>
             {widgets.map(widget=>{
                 return(
-                    <div>
-                        {widget.component==="releaseDownload"?
-                            <>
-                                {widget.values["owner"]}
-                                {widget.values["repository"]}
-                                <DownloadButton repository={widget.values['repository']} owner={widget.values['owner']} />
-                            </>
-                            :
-                            <></>
-                        }
-                    </div>
+                    <WidgetDisplaySwitch key={widget.name} widget={widget}/>
                 )
             })}
         </>
