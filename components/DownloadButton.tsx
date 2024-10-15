@@ -107,8 +107,10 @@ export default function DownloadButton({owner,repository}:Readonly<{owner:string
     }
     return(
         <div className={'text-center grid max-h-[500px] grow'}>
-            <label className={'text-amber-100'}>
-                Version:
+            <label className={'flex text-amber-100 justify-evenly'}>
+                <span>
+                    Version:
+                </span>
                 <span className={'border '}>
                     <ReleaseSelect releases={releases} handleChange={changeRelease}/>
                 </span>
