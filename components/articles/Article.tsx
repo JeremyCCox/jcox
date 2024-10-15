@@ -1,8 +1,10 @@
 'use client'
 import Image from "next/image";
 import React from "react";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import {ArticleType} from "@/app/lib/ArticleServices";
+import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
+import {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
 
 export default function Article(
     {
@@ -15,7 +17,9 @@ export default function Article(
         imgAlt= article?.imgAlt||"Default image ALT text",
         imgDesc=article?.imgDesc,
         bodyHTML=article?.bodyHTML,
-        isHome = false
+        widgets=article?.widgets,
+            goBack = true,
+            isHome = false
         }:Readonly<{
         children?: React.ReactNode;
         article?:ArticleType,
@@ -26,7 +30,9 @@ export default function Article(
         imgAlt?:string,
         imgDesc?:string,
         bodyHTML?:string,
-        isHome?:boolean,
+        widgets?:WidgetType[],
+            goBack?:boolean,
+            isHome?:boolean,
         creationDate?:string, lastEditDate?:string,
     }>){
 
@@ -39,7 +45,7 @@ export default function Article(
 
     return (
         <div id={id} className={'py-8 min-w-[80vw] h-fit px-8 sm:px-16 md:px-24 lg:px-32 mx-[10vw] relative md:snap-center md:snap-mandatory min-h-[90vh] group border border-amber-100 rounded-lg bg-gradient-to-b from-gray-900 to-gray-700 from-50% shadow-gray-700 shadow-2xl mb-16'}>
-                {!isHome&&<button className={'hidden md:block absolute md:text-6xl left-16  '} onClick={returnHome}>
+                {(!isHome&&goBack)&&<button className={'hidden md:block absolute md:text-6xl left-16  '} onClick={returnHome}>
                         ←
                 </button>}
             {/*<h1 className={'text-4xl text-center font-bold text-yellow-100 m-2'}>Jeremy Cox</h1>*/}
@@ -60,6 +66,13 @@ export default function Article(
             }
             {bodyHTML&&
                 <div className={'bodyHTML'} dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(bodyHTML)}}/>
+            }
+            {widgets&&
+                widgets.map(widget=>{
+                    return(
+                            <WidgetDisplaySwitch key={widget.name} widget={widget}/>
+                        )
+                })
             }
             {children}
         </div>

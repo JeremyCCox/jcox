@@ -7,11 +7,14 @@ import {QueryClient, useMutation, useQuery, useQueryClient} from "react-query";
 import {addArticle} from "@/app/lib/ArticleServices";
 import article from "@/models/Article";
 import {useRouter} from "next/navigation";
+import WidgetsPanel, {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
+import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
 
 enum ArticleActionKind {
     TIPTAP = 'TIPTAP',
     TITLE = 'TITLE',
     DESC = 'DESC',
+    WIDGET = 'WIDGET'
 }
 interface ArticleAction{
     type:string,
@@ -22,7 +25,8 @@ interface ArticleState{
     title?:string,
     description?:string,
     category?:string,
-    body?:string,
+    bodyHTML?:string,
+    widgets?:WidgetType[],
     template?:string,
 }
 function articleReducer(state: ArticleState, action: ArticleAction) {
@@ -45,12 +49,17 @@ function articleReducer(state: ArticleState, action: ArticleAction) {
                 ...state,
                 description:payload
             };
+        case ArticleActionKind.WIDGET:
+            return {
+                ...state,
+                widgets:[...state.widgets||[], payload]
+            };
         default:
             return state;
     }
 }
 export default function ArticleCreator(){
-    const [state,dispatch]=useReducer(articleReducer,{title:"",description:"",category:"",body:"",template:""},undefined);
+    const [state,dispatch]=useReducer(articleReducer,{title:"",description:"",category:"",bodyHTML:"",widgets:[],template:""},undefined);
     const router = useRouter()
     const handleSubmit=async (e: React.MouseEvent) => {
         let creation = JSON.parse(await addArticle(state));
@@ -60,17 +69,29 @@ export default function ArticleCreator(){
             console.log(creation.error.message)
         }
 
-        // console.log(state)
     }
     const handleUpdate=(e:Editor)=>{
         dispatch({type:ArticleActionKind.TIPTAP,payload:e.getHTML()})
     }
+    const addWidget=(widget:WidgetType)=>{
+        dispatch({type:ArticleActionKind.WIDGET,payload:widget})
+    }
     return(
         <>
             <div className={'grid'} >
+                <WidgetsPanel addWidgetCallback={addWidget}/>
                 <TextInput type={'text'} title={"Title"} name={'title'} id={'title'} onChange={(e)=>dispatch({type:ArticleActionKind.TITLE,payload:e.currentTarget.value})}/>
                 <TextInput type={'text'} title={"Description"} name={'description'} id={'description'} onChange={(e)=>dispatch({type:ArticleActionKind.DESC,payload:e.currentTarget.value})} />
-                <MyTiptap content={state.body} onUpdate={handleUpdate}/>
+                <MyTiptap content={state.bodyHTML} onUpdate={handleUpdate}  className={"min-h-[60vh]"}/>
+                {state.widgets&&
+                    state.widgets.map(widget=>{
+                        return(
+                            <div key={widget.name}>
+                                <WidgetDisplaySwitch key={widget.name} widget={widget}/>
+                            </div>
+                        )
+                    })
+                }
                 <button type={"button"} onClick={handleSubmit}>
                     Post new article
                 </button>

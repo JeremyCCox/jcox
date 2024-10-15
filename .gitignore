@@ -40,3 +40,4 @@ next-env.d.ts
 app/dev/page.tsx
 components/Dev.tsx
 app/dev/layout.tsx
+/.env.keys

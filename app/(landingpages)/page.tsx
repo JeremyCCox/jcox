@@ -10,7 +10,6 @@ export default async function Home() {
     return(
         < >
             <div className={'grid select-none'} id={'home'}>
-                <HeadBar/>
                 <ScrollBar>
                     <ScrollBarArticles/>
                 </ScrollBar>
