@@ -8,7 +8,10 @@ export async function middleware(req: NextRequest) {
         }
         let cookie = req.cookies.get("jwtoken")
         if(cookie){
-            return NextResponse.next()
+            let data = await getJwtData(cookie)
+            if(data.username === 'jeremyccox'){
+                return NextResponse.next()
+            }
         }
         return NextResponse.redirect(new URL('/admin', req.url))
     }catch(err){
