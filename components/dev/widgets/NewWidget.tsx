@@ -16,7 +16,7 @@ export default function NewWidget({widget,addWidget}:Readonly<{ widget: WidgetTy
 
             {widget && widget.parameters.map(param=>{
                 return(
-                    <label>
+                    <label key={param}>
                         {param}
                         <input className={'bg-gray-700 px-2'} type={'text'} id={param}/>
                     </label>

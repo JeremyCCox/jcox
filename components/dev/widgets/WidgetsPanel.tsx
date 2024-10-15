@@ -6,6 +6,7 @@ import NewWidget from "./NewWidget"
 import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
 
 export interface WidgetType{
+    id:string,
     name:string,
     component:string,
     parameters:string[],
@@ -17,7 +18,7 @@ const selectableWidgets = [
     {name:"Github Releases Download", component:"releaseDownload"}
 ]
 
-export default function WidgetsPanel(){
+export default function WidgetsPanel({addWidgetCallback}:Readonly<{ addWidgetCallback?:(widget:WidgetType)=>void }>){
     const [newWidget,setNewWidget]=useState<WidgetType>()
     const [widgets,setWidgets]=useState<WidgetType[]>([])
     const handleInput=(e:ChangeEvent<HTMLInputElement>)=>{
@@ -26,6 +27,7 @@ export default function WidgetsPanel(){
     const addNewWidget=(e:MouseEvent<HTMLButtonElement>)=>{
         setNewWidget(
             {
+                id:crypto.randomUUID(),
                 name:"Releases Button",
                 component:"releaseDownload",
                 parameters:["owner", "repository"],
@@ -33,9 +35,13 @@ export default function WidgetsPanel(){
             }
         )
     }
-    useEffect(() => {
-        console.log(widgets)
-    }, [widgets]);
+    const addWidget=(widget:WidgetType)=>{
+        if(addWidgetCallback){
+            addWidgetCallback(widget)
+        }else{
+            setWidgets(prevState=>[...prevState, widget]);
+        }
+    }
     return(
         <>
             <div className={'border-2 w-[400px] '}>
@@ -47,7 +53,7 @@ export default function WidgetsPanel(){
                     )
                 })}
                 {newWidget&&
-                    <NewWidget widget={newWidget} addWidget={(widget:WidgetType)=>{console.log(widget);setWidgets(prevState=>[...prevState, widget])}} />
+                    <NewWidget widget={newWidget} addWidget={addWidget} />
                 }
             </div>
             {widgets.map(widget=>{

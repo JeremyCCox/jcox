@@ -3,6 +3,8 @@ import Image from "next/image";
 import React from "react";
 import DOMPurify from "isomorphic-dompurify";
 import {ArticleType} from "@/app/lib/ArticleServices";
+import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
+import {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
 
 export default function Article(
     {
@@ -15,6 +17,7 @@ export default function Article(
         imgAlt= article?.imgAlt||"Default image ALT text",
         imgDesc=article?.imgDesc,
         bodyHTML=article?.bodyHTML,
+        widgets=article?.widgets,
             goBack = true,
             isHome = false
         }:Readonly<{
@@ -27,6 +30,7 @@ export default function Article(
         imgAlt?:string,
         imgDesc?:string,
         bodyHTML?:string,
+        widgets?:WidgetType[],
             goBack?:boolean,
             isHome?:boolean,
         creationDate?:string, lastEditDate?:string,
@@ -62,6 +66,13 @@ export default function Article(
             }
             {bodyHTML&&
                 <div className={'bodyHTML'} dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(bodyHTML)}}/>
+            }
+            {widgets&&
+                widgets.map(widget=>{
+                    return(
+                            <WidgetDisplaySwitch key={widget.name} widget={widget}/>
+                        )
+                })
             }
             {children}
         </div>
