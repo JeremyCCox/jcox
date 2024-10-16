@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "dotenvx run -- next dev",
-    "build": "dotenvx run -- next build",
-    "start": "dotenvx run -- next start",
+    "dev": "npx dotenvx run -- next dev",
+    "build": "npx dotenvx run -- next build",
+    "start": "npx dotenvx run -- next start",
     "lint": "next lint"
   },
   "dependencies": {
