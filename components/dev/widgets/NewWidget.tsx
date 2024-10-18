@@ -5,6 +5,7 @@ export default function NewWidget({widget,addWidget}:Readonly<{ widget: WidgetTy
     const handleSubmit=(e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         let newWidget = Object.assign({},widget);
+        newWidget.id =crypto.randomUUID()
         widget.parameters.map(param=>{
             newWidget.values[param] = e.currentTarget[param].value
         })

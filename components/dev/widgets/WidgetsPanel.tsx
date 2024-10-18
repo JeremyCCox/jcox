@@ -27,7 +27,7 @@ export default function WidgetsPanel({addWidgetCallback}:Readonly<{ addWidgetCal
     const addNewWidget=(e:MouseEvent<HTMLButtonElement>)=>{
         setNewWidget(
             {
-                id:crypto.randomUUID(),
+                id:"unset",
                 name:"Releases Button",
                 component:"releaseDownload",
                 parameters:["owner", "repository"],
