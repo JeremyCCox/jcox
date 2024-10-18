@@ -17,23 +17,23 @@ export default function EditArticle({article,mutate}:Readonly<{article:ArticleTy
         }
     ,2500)
     const editArticleBody = (e:Editor)=>{
-        let newArticle = {...article, bodyHTML: e.getHTML()}
+        let newArticle = {...trackedArticle, bodyHTML: e.getHTML()}
         setTrackedArticle(newArticle)
         updateArticle()
     }
     const editArticle = (e:React.ChangeEvent<HTMLInputElement>)=>{
-        let newArticle = {...article, [e.currentTarget.id]: e.currentTarget.value}
+        let newArticle = {...trackedArticle, [e.currentTarget.id]: e.currentTarget.value}
         setTrackedArticle(newArticle)
         updateArticle()
     }
     const addWidgetToArticle = (widget:WidgetType)=>{
-        let newArticle = {...article, widgets:[...article.widgets||[],widget]}
+        let newArticle = {...trackedArticle, widgets:[...trackedArticle.widgets||[],widget]}
         setTrackedArticle(newArticle)
         updateArticle()
     }
     const removeWidget=(e:React.MouseEvent<HTMLButtonElement>)=>{
-        let newWidgets = article.widgets?.filter(({id})=>!(id === e.currentTarget.id))
-        let newA = {...article, widgets: newWidgets }
+        let newWidgets = trackedArticle.widgets?.filter(({id})=>!(id === e.currentTarget.id))
+        let newA = {...trackedArticle, widgets: newWidgets }
         setTrackedArticle(newA)
         updateArticle()
     }
@@ -45,11 +45,11 @@ export default function EditArticle({article,mutate}:Readonly<{article:ArticleTy
         <>
             <div className={'flex flex-col min-h-[80vh] mx-20 my-24 border-amber-100 '}>
                 <WidgetsPanel addWidgetCallback={addWidgetToArticle} />
-                <TextInput type={'text'} title={"Title"} name={'title'} id={'title'} value={article.title} onChange={editArticle}/>
-                <TextInput type={'text'} title={"Description"} name={'description'} id={'description'} value={article.description} onChange={editArticle} />
+                <TextInput type={'text'} title={"Title"} name={'title'} id={'title'} value={trackedArticle.title} onChange={editArticle}/>
+                <TextInput type={'text'} title={"Description"} name={'description'} id={'description'} value={trackedArticle.description} onChange={editArticle} />
                 <MyTiptap content={article.bodyHTML} onUpdate={editArticleBody}  className={"min-h-[60vh]"} />
-                {article.widgets&&
-                    article.widgets.map(widget=>{
+                {trackedArticle.widgets&&
+                    trackedArticle.widgets.map(widget=>{
                         return(
                             <div className={' border border-amber-100 relative p-8'} key={`switch-name:${widget.id}`}>
                                 <button className={'absolute right-0 top-0'} type={'button'} id={widget.id} onClick={removeWidget} >

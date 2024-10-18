@@ -110,3 +110,15 @@ export async function updateArticle(article:ArticleType){
         return {success:false}
     }
 }
+export async function removeArticle(articleId:string){
+    try{
+        await mongoose.connect(getURI())
+        // let made = await Article.in(article)
+        let updater = await Article.deleteOne(
+            {"_id":articleId}
+        )
+        return {success:true}
+    }catch (err){
+        return {success:false}
+    }
+}
