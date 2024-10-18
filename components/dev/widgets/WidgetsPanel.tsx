@@ -15,7 +15,7 @@ export interface WidgetType{
 }
 
 const selectableWidgets = [
-    {name:"Github Releases Download", component:"releaseDownload"}
+    {name:"Github Releases Download", component:"releaseDownload"},
 ]
 
 export default function WidgetsPanel({addWidgetCallback}:Readonly<{ addWidgetCallback?:(widget:WidgetType)=>void }>){
@@ -27,9 +27,9 @@ export default function WidgetsPanel({addWidgetCallback}:Readonly<{ addWidgetCal
     const addNewWidget=(e:MouseEvent<HTMLButtonElement>)=>{
         setNewWidget(
             {
-                id:crypto.randomUUID(),
+                id:"unset",
                 name:"Releases Button",
-                component:"releaseDownload",
+                component:e.currentTarget.id,
                 parameters:["owner", "repository"],
                 values:{}
             }
@@ -44,16 +44,20 @@ export default function WidgetsPanel({addWidgetCallback}:Readonly<{ addWidgetCal
     }
     return(
         <>
-            <div className={'border-2 w-[400px] '}>
+            <div className={'border-2 w-[400px] m-auto p-2 rounded-md '}>
                 {selectableWidgets.map(widget=>{
                     return(
-                        <button key={widget.name} id={widget.name} type={"button"} onClick={addNewWidget}>
+                        <button className={'hover:bg-gray-700 w-full text-left my-1'} key={widget.name} id={widget.component} type={"button"} onClick={addNewWidget}>
                             {widget.name}
                         </button>
                     )
                 })}
                 {newWidget&&
-                    <NewWidget widget={newWidget} addWidget={addWidget} />
+                    <>
+                        {newWidget.component}
+                        <NewWidget widget={newWidget} addWidget={addWidget} />
+                    </>
+
                 }
             </div>
             {widgets.map(widget=>{

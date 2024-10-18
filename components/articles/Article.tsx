@@ -45,9 +45,9 @@ export default function Article(
 
     return (
         <div id={id} className={'py-8 min-w-[80vw] h-fit px-8 sm:px-16 md:px-24 lg:px-32 mx-[10vw] relative md:snap-center md:snap-mandatory min-h-[90vh] group border border-amber-100 rounded-lg bg-gradient-to-b from-gray-900 to-gray-700 from-50% shadow-gray-700 shadow-2xl mb-16'}>
-                {(!isHome&&goBack)&&<button className={'hidden md:block absolute md:text-6xl left-16  '} onClick={returnHome}>
-                        ←
-                </button>}
+            {(!isHome&&goBack)&&<button className={'hidden md:block absolute md:text-6xl left-16  '} onClick={returnHome}>
+                ←
+            </button>}
             {/*<h1 className={'text-4xl text-center font-bold text-yellow-100 m-2'}>Jeremy Cox</h1>*/}
             <h1 id={`H:${id}`} className={'text-amber-100 font-bold text-center'}>{title}</h1>
             {description&&
@@ -67,14 +67,16 @@ export default function Article(
             {bodyHTML&&
                 <div className={'bodyHTML'} dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(bodyHTML)}}/>
             }
-            {widgets&&
-                widgets.map(widget=>{
-                    return(
+            {children}
+            <div className={'bottom-0 left-0 absolute mx-[10vw] min-w-[60vw]'}>
+                {widgets&&
+                    widgets.map(widget=>{
+                        return(
                             <WidgetDisplaySwitch key={widget.name} widget={widget}/>
                         )
-                })
-            }
-            {children}
+                    })
+                }
+            </div>
         </div>
 
 )
