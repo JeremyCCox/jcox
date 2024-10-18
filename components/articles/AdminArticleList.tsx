@@ -1,6 +1,6 @@
 'use client'
-import {useQuery, UseQueryResult} from "react-query";
-import {ArticleType, getArticleTitles} from "@/app/lib/ArticleServices";
+import {useQuery, useQueryClient, UseQueryResult} from "react-query";
+import {ArticleType, getArticleTitles, removeArticle} from "@/app/lib/ArticleServices";
 import Article from "@/components/articles/Article";
 import Loading from "@/components/layout/Loading";
 import QueryError from "@/components/query/QueryError";
@@ -10,20 +10,22 @@ import {useEffect} from "react";
 
 export default function AdminArticleList(){
     const router = useRouter()
+    const queryClient = useQueryClient()
     const articleTitles:UseQueryResult<[ArticleType]> = useQuery('articleTitles',async () => {
         let titles = JSON.parse(await getArticleTitles());
         if(titles.error){
             throw new Error(titles.error.message)
         }
-        console.log(titles)
         return titles.data
     })
     const goToNew=()=>{
         router.push('/admin/articles/new')
     }
-    useEffect(()=>{
-        console.log(articleTitles)
-    },[articleTitles]);
+    const deleteArticle=async (articleId: string) => {
+        await removeArticle(articleId)
+        await queryClient.refetchQueries("articleTitles")
+
+    }
 
     return(
         <div className={'mt-16 grid justify-evenly'}>
@@ -43,7 +45,7 @@ export default function AdminArticleList(){
                            <div className={'grid '}>
                                {articleTitles.data.map(article=>{
                                    return(
-                                        <AdminArticleLink key={article._id} article={article} />
+                                        <AdminArticleLink key={article._id} article={article} deleteArticle={deleteArticle} />
                                    )
                                }
                                )}
