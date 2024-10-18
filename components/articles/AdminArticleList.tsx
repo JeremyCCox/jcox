@@ -54,9 +54,6 @@ export default function AdminArticleList(){
                            <QueryError/>
 
                }
-               <pre className={'text-amber-100'}>
-                   {JSON.stringify(articleTitles.data,null,2)}
-               </pre>
            </Article>
         </div>
     )
