@@ -9,6 +9,7 @@ import {
 import { Color } from '@tiptap/extension-color'
 import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
+import TextAlign from '@tiptap/extension-text-align'
 import StarterKit from '@tiptap/starter-kit'
 import React, {EventHandler, useEffect} from 'react'
 
@@ -18,6 +19,9 @@ export default function MyTiptap({content="Placeholder Text", onUpdate,className
     const extensions = [
         Color.configure({ types: [TextStyle.name, ListItem.name] }),
         TextStyle.configure({HTMLAttributes: undefined}),
+        TextAlign.configure({
+            types: ['heading', 'paragraph'],
+        }),
         StarterKit.configure({
             bulletList: {
                 keepMarks: true,
@@ -45,6 +49,21 @@ export default function MyTiptap({content="Placeholder Text", onUpdate,className
 
 const MenuBar = () => {
     const { editor } = useCurrentEditor()
+    const shiftAlign=()=>{
+        switch(true){
+            case(editor?.isActive({textAlign:'left'})):
+                editor?.chain().focus().setTextAlign('center').run()
+                break;
+            case(editor?.isActive({textAlign:'center'})):
+                editor?.chain().focus().setTextAlign('right').run()
+                break;
+            case(editor?.isActive({textAlign:'right'})):
+                editor?.chain().focus().setTextAlign('left').run()
+                break;
+            default:
+                editor?.chain().focus().setTextAlign('left').run()
+        }
+    }
 
     if (!editor) {
         return null
@@ -175,15 +194,38 @@ const MenuBar = () => {
                         onClick={() => editor.chain().focus().toggleBulletList().run()}
                         className={editor.isActive('bulletList') ? 'is-active border border-gray-500 px-1 text-nowrap text-gray-900 font-bold' : ' border border-gray-500 px- text-nowrap text-gray-900 font-bold'}
                     >
-                        Bullet list
+                        Bullets
                     </button>
                     <button type={'button'}
                         onClick={() => editor.chain().focus().toggleOrderedList().run()}
                         className={editor.isActive('orderedList') ? 'is-active border border-gray-500 px-1 text-nowrap text-gray-900 font-bold' : ' border border-gray-500 px-1 text-nowrap text-gray-900 font-bold'}
                     >
-                        Ordered list
+                        Numbered
                     </button>
                 </div>
+                <button type={'button'}
+                        onClick={shiftAlign}
+                        disabled={
+                            !editor.can()
+                                .chain()
+                                .focus()
+                                .toggleStrike()
+                                .run()
+                        }
+                        className={'border border-gray-500 px-1 text-gray-900 font-bold'}
+                >
+
+                    {
+                        editor.isActive({textAlign:'left'})?
+                            "Left"
+                            :
+                            editor.isActive({textAlign:'center'})?
+                                "Center"
+                                :
+                                "Right"
+                    }
+
+                </button>
                 {/*<button type={'button'}*/}
                 {/*    onClick={() => editor.chain().focus().toggleCodeBlock().run()}*/}
                 {/*    className={editor.isActive('codeBlock') ? 'is-active' : ''}*/}
