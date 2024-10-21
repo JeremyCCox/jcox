@@ -14,11 +14,31 @@ export default function ScrollBarArticles(){
        if(articles.error){
            throw new Error(articles.error.message)
        }
-        return articles.data
+        return orderByUpdate(articles.data)
     });
 
-
-
+    const orderByUpdate=(list :ArticleType[])=>{
+        return list.sort((a,b)=>{
+            if(!a.lastUpdate && !b.lastUpdate){
+                return 0
+            }
+            if(!a.lastUpdate){
+                return 1
+            }
+            if(!b.lastUpdate){
+                return -1
+            }
+            let aDate = new Date(a.lastUpdate)
+            let bDate = new Date(b.lastUpdate)
+            if(aDate > bDate){
+                return -1
+            }
+            if(aDate < bDate){
+                return 1
+            }
+            return 0
+        })
+    }
 
     return(
         <>

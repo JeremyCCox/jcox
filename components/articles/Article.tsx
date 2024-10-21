@@ -19,7 +19,9 @@ export default function Article(
         bodyHTML=article?.bodyHTML,
         widgets=article?.widgets,
             goBack = true,
-            isHome = false
+            isHome = false,
+        creationDate=article?.creationDate,
+        lastUpdate=article?.lastUpdate,
         }:Readonly<{
         children?: React.ReactNode;
         article?:ArticleType,
@@ -33,7 +35,8 @@ export default function Article(
         widgets?:WidgetType[],
             goBack?:boolean,
             isHome?:boolean,
-        creationDate?:string, lastEditDate?:string,
+        creationDate?:string,
+        lastUpdate?:string,
     }>){
 
         const returnHome=()=>{
@@ -50,6 +53,13 @@ export default function Article(
             </button>}
             {/*<h1 className={'text-4xl text-center font-bold text-yellow-100 m-2'}>Jeremy Cox</h1>*/}
             <h1 id={`H:${id}`} className={'text-amber-100 font-bold text-center'}>{title}</h1>
+            {lastUpdate&&
+            <span className={'w-full flex justify-between'}>
+                <span>last edit:</span>
+                <span>{new Date(lastUpdate).toDateString()}</span>
+                <span>{new Date(lastUpdate).toLocaleTimeString()}</span>
+            </span>
+            }
             {description&&
                 <p className={'p-6 m-2 bg-gray-700'}>{description}</p>
             }

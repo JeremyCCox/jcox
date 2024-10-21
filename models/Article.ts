@@ -13,6 +13,7 @@ interface Article{
     widgets?:WidgetType,
     template?:string,
     creationDate?:mongoose.Date,
+    lastUpdate?:mongoose.Date,
 }
 
 const articleSchema= new Schema<Article>({
@@ -32,6 +33,7 @@ const articleSchema= new Schema<Article>({
     }],
     template:Number,
     creationDate: {type:Date,default:Date.now},
+    lastUpdate: {type:Date,default:Date.now},
 })
 const Article = mongoose.models.Article||model("Article",articleSchema)
 export default Article
