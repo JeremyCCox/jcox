@@ -77,24 +77,24 @@ export default function ScrollBarArticles(){
                                     :
                                     <></>
                         }
-                        <li>
-                            <ArticleLink id={'link:3'} value={'Atzin - Internet management'}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:4'} value={'WRAP Desktop'}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:5'} value={'wrapaudit.com'}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:2'} value={"YYC Hacks 2024"}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:6'} value={'Raizapalooza.com'}/>
-                        </li>
-                        <li>
-                            <ArticleLink id={'link:7'} value={'Eco elders email campaign'}/>
-                        </li>
+                        {/*<li>*/}
+                        {/*    <ArticleLink id={'link:3'} value={'Atzin - Internet management'}/>*/}
+                        {/*</li>*/}
+                        {/*<li>*/}
+                        {/*    <ArticleLink id={'link:4'} value={'WRAP Desktop'}/>*/}
+                        {/*</li>*/}
+                        {/*<li>*/}
+                        {/*    <ArticleLink id={'link:5'} value={'wrapaudit.com'}/>*/}
+                        {/*</li>*/}
+                        {/*<li>*/}
+                        {/*    <ArticleLink id={'link:2'} value={"YYC Hacks 2024"}/>*/}
+                        {/*</li>*/}
+                        {/*<li>*/}
+                        {/*    <ArticleLink id={'link:6'} value={'Raizapalooza.com'}/>*/}
+                        {/*</li>*/}
+                        {/*<li>*/}
+                        {/*    <ArticleLink id={'link:7'} value={'Eco elders email campaign'}/>*/}
+                        {/*</li>*/}
                     </ul>
                     {/*<div className={'w-3/4 left-0'}>*/}
                     {/*    <h3 className={'text-right'}>*/}
