@@ -78,7 +78,7 @@ export default function Article(
                 <div className={'bodyHTML'} dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(bodyHTML)}}/>
             }
             {children}
-            <div className={'bottom-0 left-0 absolute mx-[10vw] min-w-[60vw]'}>
+            <div className={'pt-24'}>
                 {widgets&&
                     widgets.map(widget=>{
                         return(
