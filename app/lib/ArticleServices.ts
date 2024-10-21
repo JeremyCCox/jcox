@@ -24,7 +24,7 @@ export interface ArticleType{
     widgets?:WidgetType[],
     template?:string,
     creationDate?:string,
-    lastEditDate?:string,
+    lastUpdate?:string,
 }
 interface ReturnValues{
     error?:string,
@@ -96,6 +96,7 @@ export async function addArticle(article:ArticleType){
 export async function updateArticle(article:ArticleType){
     console.log("Update Article", Date().toString())
     console.log(article)
+    article.lastUpdate = Date().toString();
     try{
         await mongoose.connect(getURI())
         // let made = await Article.in(article)
