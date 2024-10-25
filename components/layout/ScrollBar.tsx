@@ -8,22 +8,15 @@ export default function ScrollBar({children}:Readonly<{
     const queryClient = new QueryClient();
     const scrollRight=(e:MouseEvent)=>{
         let scroller = document.getElementById('scrollBar')
-        // let elem = document.getElementById(`${e.currentTarget.id}`)
-        console.log("scroll")
         if(scroller){
             scroller.scrollTo(scroller.scrollLeft+window.innerWidth,0)
-            // scroller.scrollLeft = window.innerWidth
-            // console.log("Adada")
         }
 
     }
     const scrollLeft=(e:MouseEvent)=>{
         let scroller = document.getElementById('scrollBar')
-        // let elem = document.getElementById(`${e.currentTarget.id}`)
         if(scroller){
-            // console.log(scroller.scrollLeft)
             scroller.scrollTo(scroller.scrollLeft-window.innerWidth,0)
-            // scroller.scrollLeft = -window.innerWidth
         }
     }
 
