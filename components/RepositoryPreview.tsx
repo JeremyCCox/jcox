@@ -27,7 +27,9 @@ export default function RepositoryPreview({owner,repository}:Readonly<{owner:str
     return(
         <>
             <div>
-                <div dangerouslySetInnerHTML={{__html:data}}/>
+                {data&&
+                    <div dangerouslySetInnerHTML={{__html:data}}/>
+                }
             </div>
         </>
     )
