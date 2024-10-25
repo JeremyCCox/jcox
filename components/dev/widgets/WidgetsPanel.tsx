@@ -15,7 +15,20 @@ export interface WidgetType{
 }
 
 const selectableWidgets = [
-    {name:"Github Releases Download", component:"releaseDownload"},
+    {
+        id:'unset',
+        name:"Github Releases Download",
+        component:"releaseDownload",
+        parameters:["owner", "repository"],
+        values:{}
+    },
+    {
+        id:"unset",
+        name:"Github Repository Preview",
+        component:"githubPreview",
+        parameters:["owner", "repository"],
+        values:{}
+    }
 ]
 
 export default function WidgetsPanel({addWidgetCallback}:Readonly<{ addWidgetCallback?:(widget:WidgetType)=>void }>){
@@ -25,15 +38,7 @@ export default function WidgetsPanel({addWidgetCallback}:Readonly<{ addWidgetCal
         setWidgets([{...widgets[0], values:{...widgets[0].values, [e.currentTarget.id]:e.currentTarget.value }}])
     }
     const addNewWidget=(e:MouseEvent<HTMLButtonElement>)=>{
-        setNewWidget(
-            {
-                id:"unset",
-                name:"Releases Button",
-                component:e.currentTarget.id,
-                parameters:["owner", "repository"],
-                values:{}
-            }
-        )
+        setNewWidget(selectableWidgets.find(({component})=> component === e.currentTarget.id))
     }
     const addWidget=(widget:WidgetType)=>{
         if(addWidgetCallback){
@@ -47,14 +52,13 @@ export default function WidgetsPanel({addWidgetCallback}:Readonly<{ addWidgetCal
             <div className={'border-2 w-[400px] m-auto p-2 rounded-md '}>
                 {selectableWidgets.map(widget=>{
                     return(
-                        <button className={'hover:bg-gray-700 w-full text-left my-1'} key={widget.name} id={widget.component} type={"button"} onClick={addNewWidget}>
+                        <button className={'hover:bg-gray-700 w-full text-left my-1'} value={widget.name} key={widget.name} id={widget.component} type={"button"} onClick={addNewWidget}>
                             {widget.name}
                         </button>
                     )
                 })}
                 {newWidget&&
                     <>
-                        {newWidget.component}
                         <NewWidget widget={newWidget} addWidget={addWidget} />
                     </>
 
