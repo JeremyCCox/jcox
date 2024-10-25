@@ -10,6 +10,7 @@ interface Article{
     description?:string,
     category?:string,
     bodyHTML?:string,
+    published:boolean,
     widgets?:WidgetType,
     template?:string,
     creationDate?:mongoose.Date,
@@ -24,6 +25,7 @@ const articleSchema= new Schema<Article>({
     imgDesc:String,
     category:String,
     bodyHTML:String,
+    published:{type:Boolean,default:false},
     widgets:[{
         id:String,
         name:String,
