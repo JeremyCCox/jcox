@@ -21,6 +21,7 @@ export interface ArticleType{
     imgDesc?:string,
     category?:string,
     bodyHTML?:string,
+    published?:boolean,
     widgets?:WidgetType[],
     template?:string,
     creationDate?:string,
@@ -47,7 +48,7 @@ const cleanArticle = (article:any) =>{
 export async function getArticles(){
     try{
         await mongoose.connect(getURI())
-        let articles= await Article.find({})
+        let articles= await Article.find({published:true})
         return(JSON.stringify({data:articles.map(article=>{
             return cleanArticle(article)
         })}))
@@ -96,7 +97,6 @@ export async function addArticle(article:ArticleType){
 export async function updateArticle(article:ArticleType){
     console.log("Update Article", Date().toString())
     console.log(article)
-    article.lastUpdate = Date().toString();
     try{
         await mongoose.connect(getURI())
         // let made = await Article.in(article)

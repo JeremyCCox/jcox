@@ -31,6 +31,11 @@ export default function EditArticle({article,mutate}:Readonly<{article:ArticleTy
         setTrackedArticle(newArticle)
         updateArticle()
     }
+    const toggleArticlePublished =()=>{
+        let newArticle = {...trackedArticle, published: !trackedArticle.published}
+        setTrackedArticle(newArticle)
+        runUpdateCallback()
+    }
     const removeWidget=(e:React.MouseEvent<HTMLButtonElement>)=>{
         let newWidgets = trackedArticle.widgets?.filter(({id})=>!(id === e.currentTarget.id))
         let newA = {...trackedArticle, widgets: newWidgets }
@@ -44,7 +49,14 @@ export default function EditArticle({article,mutate}:Readonly<{article:ArticleTy
     return(
         <>
             <div className={'flex flex-col min-h-[80vh] mx-20 my-24 border-amber-100 '}>
-                <WidgetsPanel addWidgetCallback={addWidgetToArticle} />
+                <div className={'flex flex-col'}>
+                    <div className={'w-full flex justify-between'}>
+                        <span>
+                            Published:
+                            <input checked={trackedArticle.published} type={'checkbox'} onClick={toggleArticlePublished}/>
+                        </span>
+                    </div>
+                </div>
                 <TextInput type={'text'} title={"Title"} name={'title'} id={'title'} value={trackedArticle.title} onChange={editArticle}/>
                 <TextInput type={'text'} title={"Description"} name={'description'} id={'description'} value={trackedArticle.description} onChange={editArticle} />
                 <MyTiptap content={article.bodyHTML} onUpdate={editArticleBody}  className={"min-h-[60vh]"} />
