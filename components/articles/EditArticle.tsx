@@ -9,7 +9,7 @@ import {Editor} from "@tiptap/core";
 import WidgetsPanel, {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
 import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
 
-export default function EditArticle({article,mutate,saveTime=2.5}:Readonly<{article:ArticleType,mutate:any,saveTime:number}>){
+export default function EditArticle({article,mutate,saveTime=2.5}:Readonly<{article:ArticleType,mutate:any,saveTime?:number}>){
     const [trackedArticle,setTrackedArticle]= useState(article)
     const [editState, setEditState] = useState(false)
     const [saveCountdown, setSaveCountdown] = useState(saveTime)
