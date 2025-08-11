@@ -1,4 +1,10 @@
-# Jcox.ca, my personal blog #
+# Jcox.ca, my personal blog
+
+## 🚧🚧🚧🚧🚧🚧🚧🚧🚧❗❗This project is a W.I.P ❗❗ 🚧🚧🚧🚧🚧🚧🚧🚧🚧
+# 👷  [====]  🔨  [####]  🧱🧱🧱  🔧  [====]  🪜  [##]  🛠️  [====]  🪚
+#  [####]  🪜  [====]  🧱🧱🧱🧱  [##]  🛠️  [====]  🧱🧱  🪚👷  [####]  
+# [====]  🧱🧱  [##]  🛠️  [####]  👷👷   [====]  🪜  [##]  🧱🧱  🧱  🔨 
+## 🚧🚧🚧🚧🚧🚧🚧🚧🚧 _Hardhats on beyond this point!_ 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
 Along with being a personal blogspot, This web application serves as a testbed for my Node.js packages as they are developed.
 
