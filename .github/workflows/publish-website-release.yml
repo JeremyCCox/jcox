@@ -1,0 +1,10 @@
+
+name: Publish on remote docker through SSH
+on:
+  push:
+    branches:
+      -  'release'
+jobs:
+  publish-in-docker:
+    uses: JeremyCCox/jman-docker-workflow/.github/workflows/main.yml@main
+    secrets: inherit

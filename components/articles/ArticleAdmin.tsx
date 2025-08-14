@@ -11,21 +11,17 @@ import {redirect, useRouter} from "next/navigation";
 export default function ArticleAdmin({articleId}:{articleId:string}){
     const queryClient = useQueryClient();
     const editArticle = async (data:ArticleType)=>{
-        console.log("edit article")
-        console.log(data)
         await updateArticle(data)
     }
     const router = useRouter()
     const articleData = useQuery(["article",articleId],async () => {
         let article = JSON.parse(await getArticle(articleId));
-        console.log(article)
         if(article.error){
             if(article.error === "Article not found!"){
                 router.push('/admin/articles')
             }
             throw new Error(article.error.message)
         }
-        console.log(article)
         return article
     })
     const mutation = useMutation(

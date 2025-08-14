@@ -1,7 +1,6 @@
 'use client'
 import {
     Editor,
-    EditorContent, EditorEvents,
     EditorProvider,
     FloatingMenu,
     useCurrentEditor,
@@ -10,15 +9,19 @@ import {
 import { Color } from '@tiptap/extension-color'
 import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
+import TextAlign from '@tiptap/extension-text-align'
 import StarterKit from '@tiptap/starter-kit'
 import React, {EventHandler, useEffect} from 'react'
 
-export default function MyTiptap({content="Placeholder Text", onUpdate}:{content?:string,onUpdate:any}){
+export default function MyTiptap({content="Placeholder Text", onUpdate,classNameOverride,className}:{content?:string,onUpdate:any,classNameOverride?:string,className?:string}){
 
 
     const extensions = [
         Color.configure({ types: [TextStyle.name, ListItem.name] }),
         TextStyle.configure({HTMLAttributes: undefined}),
+        TextAlign.configure({
+            types: ['heading', 'paragraph'],
+        }),
         StarterKit.configure({
             bulletList: {
                 keepMarks: true,
@@ -32,49 +35,42 @@ export default function MyTiptap({content="Placeholder Text", onUpdate}:{content
     ]
     const editorAttributes={
         attributes:{
-            class:"min-h-[1.2lh] grow p-[.1lh] border border-black mx-2 mb-2 text-overflow bg-transparent text-black"
+            class:classNameOverride?classNameOverride:`min-h-[1.2lh] h-full  p-[.4lh] border mx-2 mb-2 text-overflow bg-transparent text-black ${className}`
         }
     }
+    const handleUpdate=(props:{editor:Editor,transaction:any})=>{
+        onUpdate(props.editor)
+    }
     return(
-        <EditorProvider extensions={extensions} content={content} slotBefore={<MenuBar/>} editorProps={editorAttributes} immediatelyRender={false}>
-            <MyEditor handleUpdate={onUpdate}/>
-            {/*<EditorContent editor={useCurrentEditor().editor} />*/}
+        <EditorProvider extensions={extensions} onUpdate={handleUpdate}  content={content} slotBefore={<MenuBar/>} editorProps={editorAttributes} immediatelyRender={false}>
         </EditorProvider>
-    )
-}
-const MyEditor=({handleUpdate}: { handleUpdate: any })=>{
-    const editor =useCurrentEditor().editor;
-    if(!editor){
-        throw new Error("Editor is NULL!")
-    }
-    // editor.on('c',)
-    function update({editor}:{editor:Editor}){
-        handleUpdate(editor)
-    }
-    useEffect(()=>{
-        // @ts-ignore
-        editor.on('update',update)
-        return(()=>{
-            // @ts-ignore
-            editor.off('update',update)
-        })
-    })
-
-
-    return(
-        <EditorContent editor={editor}/>
     )
 }
 
 const MenuBar = () => {
     const { editor } = useCurrentEditor()
+    const shiftAlign=()=>{
+        switch(true){
+            case(editor?.isActive({textAlign:'left'})):
+                editor?.chain().focus().setTextAlign('center').run()
+                break;
+            case(editor?.isActive({textAlign:'center'})):
+                editor?.chain().focus().setTextAlign('right').run()
+                break;
+            case(editor?.isActive({textAlign:'right'})):
+                editor?.chain().focus().setTextAlign('left').run()
+                break;
+            default:
+                editor?.chain().focus().setTextAlign('left').run()
+        }
+    }
 
     if (!editor) {
         return null
     }
 
     return (
-        <div className={'border-t border-x border-black mx-2 mt-2 bg-white '}>
+        <div className={'border-t border-x border-black mx-2 mt-2 bg-white m-2'}>
             <div className={'flex md:justify-center transition: align-bottom overflow-clip'}>
                 <div className={'flex align-bottom text-lg'}>
                     <button type={'button'}
@@ -198,15 +194,38 @@ const MenuBar = () => {
                         onClick={() => editor.chain().focus().toggleBulletList().run()}
                         className={editor.isActive('bulletList') ? 'is-active border border-gray-500 px-1 text-nowrap text-gray-900 font-bold' : ' border border-gray-500 px- text-nowrap text-gray-900 font-bold'}
                     >
-                        Bullet list
+                        Bullets
                     </button>
                     <button type={'button'}
                         onClick={() => editor.chain().focus().toggleOrderedList().run()}
                         className={editor.isActive('orderedList') ? 'is-active border border-gray-500 px-1 text-nowrap text-gray-900 font-bold' : ' border border-gray-500 px-1 text-nowrap text-gray-900 font-bold'}
                     >
-                        Ordered list
+                        Numbered
                     </button>
                 </div>
+                <button type={'button'}
+                        onClick={shiftAlign}
+                        disabled={
+                            !editor.can()
+                                .chain()
+                                .focus()
+                                .toggleStrike()
+                                .run()
+                        }
+                        className={'border border-gray-500 px-1 text-gray-900 font-bold'}
+                >
+
+                    {
+                        editor.isActive({textAlign:'left'})?
+                            "Left"
+                            :
+                            editor.isActive({textAlign:'center'})?
+                                "Center"
+                                :
+                                "Right"
+                    }
+
+                </button>
                 {/*<button type={'button'}*/}
                 {/*    onClick={() => editor.chain().focus().toggleCodeBlock().run()}*/}
                 {/*    className={editor.isActive('codeBlock') ? 'is-active' : ''}*/}

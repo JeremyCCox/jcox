@@ -3,6 +3,7 @@
 import mongoose from "mongoose";
 import Article from "@/models/Article";
 import {ObjectId} from 'mongodb'
+import {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
 
 const getURI=()=>{
     const mongodb_uri = process.env["MONGODB_URI"];
@@ -20,9 +21,11 @@ export interface ArticleType{
     imgDesc?:string,
     category?:string,
     bodyHTML?:string,
+    published?:boolean,
+    widgets?:WidgetType[],
     template?:string,
     creationDate?:string,
-    lastEditDate?:string,
+    lastUpdate?:string,
 }
 interface ReturnValues{
     error?:string,
@@ -45,7 +48,7 @@ const cleanArticle = (article:any) =>{
 export async function getArticles(){
     try{
         await mongoose.connect(getURI())
-        let articles= await Article.find({})
+        let articles= await Article.find({published:true})
         return(JSON.stringify({data:articles.map(article=>{
             return cleanArticle(article)
         })}))
@@ -57,7 +60,7 @@ export async function getArticles(){
 export async function getArticleTitles(){
     try{
         await mongoose.connect(getURI())
-        let articles= await Article.find({}).select('title description')
+        let articles= await Article.find({}).select('title description creationDate')
         return(JSON.stringify({data:articles.map(article=>{
                 return cleanArticle(article)
             })}))
@@ -105,6 +108,18 @@ export async function updateArticle(article:ArticleType){
         return {success:true}
     }catch (err){
         console.error(err)
+        return {success:false}
+    }
+}
+export async function removeArticle(articleId:string){
+    try{
+        await mongoose.connect(getURI())
+        // let made = await Article.in(article)
+        let updater = await Article.deleteOne(
+            {"_id":articleId}
+        )
+        return {success:true}
+    }catch (err){
         return {success:false}
     }
 }
