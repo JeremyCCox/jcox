@@ -1,6 +1,6 @@
 'use server'
-import ScrollBar from "@/components/layout/ScrollBar";
-import ScrollBarArticles from "@/components/articles/ScrollBarArticles";
+import ScrollBar from "@components/layout/ScrollBar";
+import ScrollBarArticles from "@components/articles/ScrollBarArticles";
 
 export default async function Home() {
 

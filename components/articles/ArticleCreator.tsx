@@ -1,14 +1,14 @@
 'use client'
-import TextInput from "@/components/inputs/TextInput";
-import MyTiptap from "@/components/inputs/MyTiptap";
+import TextInput from "@components/inputs/TextInput";
+import MyTiptap from "@components/inputs/MyTiptap";
 import React, {MouseEventHandler, useReducer, useState} from "react";
 import {Editor} from "@tiptap/core";
 import {QueryClient, useMutation, useQuery, useQueryClient} from "react-query";
-import {addArticle} from "@/app/lib/ArticleServices";
-import article from "@/models/Article";
+import {addArticle} from "@/lib/ArticleServices";
+import article from "@models/Article";
 import {useRouter} from "next/navigation";
-import WidgetsPanel, {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
-import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
+import WidgetsPanel, {WidgetType} from "@components/dev/widgets/WidgetsPanel";
+import WidgetDisplaySwitch from "@components/dev/widgets/WidgetDisplaySwitch";
 
 enum ArticleActionKind {
     TIPTAP = 'TIPTAP',

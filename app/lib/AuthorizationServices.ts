@@ -2,7 +2,7 @@
 import {cookies} from "next/headers";
 import {setJwt, getJwtData, getJwt} from "test-jman-web-tokens";
 import {isRedirectError} from "next/dist/client/components/redirect";
-import Administrator from "@/models/Administrator";
+import Administrator from "@models/Administrator";
 import mongoose from "mongoose";
 import {compareSync,hashSync} from "bcrypt-ts";
 import {redirect} from "next/navigation";

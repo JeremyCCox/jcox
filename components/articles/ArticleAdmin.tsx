@@ -1,11 +1,11 @@
 'use client'
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import {ArticleType, getArticle, getArticles, updateArticle} from "@/app/lib/ArticleServices";
-import Loading from "@/components/layout/Loading";
-import TextInput from "@/components/inputs/TextInput";
-import MyTiptap from "@/components/inputs/MyTiptap";
+import {ArticleType, getArticle, getArticles, updateArticle} from "@/lib/ArticleServices";
+import Loading from "@components/layout/Loading";
+import TextInput from "@components/inputs/TextInput";
+import MyTiptap from "@components/inputs/MyTiptap";
 import React from "react";
-import EditArticle from "@/components/articles/EditArticle";
+import EditArticle from "@components/articles/EditArticle";
 import {redirect, useRouter} from "next/navigation";
 
 export default function ArticleAdmin({articleId}:{articleId:string}){

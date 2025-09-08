@@ -1,10 +1,10 @@
 'use client'
 import {useQuery, useQueryClient, UseQueryResult} from "react-query";
-import {ArticleType, getArticleTitles, removeArticle} from "@/app/lib/ArticleServices";
-import Article from "@/components/articles/Article";
-import Loading from "@/components/layout/Loading";
-import QueryError from "@/components/query/QueryError";
-import AdminArticleLink from "@/components/articles/AdminArticleLink";
+import {ArticleType, getArticleTitles, removeArticle} from "@/lib/ArticleServices";
+import Article from "@components/articles/Article";
+import Loading from "@components/layout/Loading";
+import QueryError from "@components/query/QueryError";
+import AdminArticleLink from "@components/articles/AdminArticleLink";
 import {useRouter} from "next/navigation";
 import {useEffect} from "react";
 

@@ -2,9 +2,9 @@
 import Image from "next/image";
 import React from "react";
 import DOMPurify from "isomorphic-dompurify";
-import {ArticleType} from "@/app/lib/ArticleServices";
-import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
-import {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
+import {ArticleType} from "@/lib/ArticleServices";
+import WidgetDisplaySwitch from "@components/dev/widgets/WidgetDisplaySwitch";
+import {WidgetType} from "@components/dev/widgets/WidgetsPanel";
 
 export default function Article(
     {

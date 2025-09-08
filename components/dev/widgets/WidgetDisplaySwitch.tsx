@@ -1,6 +1,6 @@
-import DownloadButton from "@/components/DownloadButton";
-import {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
-import RepositoryPreview from "@/components/RepositoryPreview";
+import DownloadButton from "@components/DownloadButton";
+import {WidgetType} from "@components/dev/widgets/WidgetsPanel";
+import RepositoryPreview from "@components/RepositoryPreview";
 
 export default function WidgetDisplaySwitch({widget}:Readonly<{ widget:WidgetType }>){
     switch (widget.component){

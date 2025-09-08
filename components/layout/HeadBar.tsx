@@ -1,6 +1,6 @@
 'use client'
-import GlitchyTitle from "@/components/layout/GlitchyTitle";
-import OutLinks from "@/components/layout/OutLinks";
+import GlitchyTitle from "@components/layout/GlitchyTitle";
+import OutLinks from "@components/layout/OutLinks";
 
 
 export default function HeadBar(){
