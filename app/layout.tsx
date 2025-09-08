@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import {Kanit, Kode_Mono} from 'next/font/google'
 
-import "./globals.css";
+import "@/globals.css"
 import React from "react";
-import HeadBar from "@/components/layout/HeadBar";
+import HeadBar from "@components/layout/HeadBar";
 
 const kanit = Kanit({
     subsets:["latin"],
@@ -27,14 +27,8 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={kode_mono.className}>
-            <body className={'bg-gray-900'}>
-                <div className={'min-h-[100vh]'}>
-                    <HeadBar/>
+            <body className={'bg-gray-900 h-[100vh]'}>
                     {children}
-                </div>
-                <div className={'h-8 flex justify-evenly'}>
-                    <a href={'/terms'} className={'text-blue-800 text-lg underline'}> Terms and Conditions</a>
-                </div>
             </body>
         </html>
     );
