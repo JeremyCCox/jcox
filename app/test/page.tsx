@@ -4,23 +4,27 @@ import RightEyeball from "@public/eyes/RightEyeball.svg"
 import LeftEyeball from "@public/eyes/LeftEyeball.svg"
 import LeftIris from "@public/eyes/LeftIris.svg"
 import Eyeball from "@/test/comps/Eyeball";
+import Image from "next/image"
+
 export default function Page(){
     return(
-        <div className={'flex items-center justify-center w-80 h-80 bg-green-200 '}   id={'box'} >
+        <div className={'flex relative items-center justify-center w-[42vw] h-[54vh] bg-green-200 '} >
+            <Image src={'/JeremySmiling.jpg'} alt={'Jeremy Smiling'}  fill
+                   className="object-cover"
+                   priority layout={'fill'} />
             <Eyeball
                 irisSvg={LeftIris}
                 irisId={'leftIris'}
                 ballSvg={LeftEyeball}
                 ballId={'leftBall'}
-                className={'w-20 h-20'}
+                className={'w-16 h-16 right-20 -top-14'}
             />
-            <div className={'w-20'}></div>
             <Eyeball
                     irisSvg={LeftIris} // Double left iris looks better.
                     irisId={'rightIris'}
                     ballSvg={RightEyeball}
                     ballId={'rightBall'}
-                    className={'w-20 h-20'}
+                    className={'w-16 h-16 right-20 -top-14'}
                 />
         </div>
     )
