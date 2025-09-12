@@ -25,8 +25,8 @@ export default function Eyeball(props:Readonly<{eyeSpeed?:number,className:strin
 
             const onMouseMove = (e:MouseEvent) => {
                 const { width, height, left,right, top,bottom } = bounds;
-                const hw = width / 6;
-                const hh = height / 6;
+                const hw = width / 10; // TODO: This needs to be cleverer. probably something parabolic
+                const hh = height / 10;
                 const x = utils.clamp(e.clientX - (left + (right-left)/4) - hw, -hw, hw);
                 const y = utils.clamp(e.clientY - (top + (bottom-top)/4)  - hh, -hh, hh);
                 animatableSquare.x(x); // Animate the x value in 500ms
