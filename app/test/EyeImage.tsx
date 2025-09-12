@@ -52,9 +52,10 @@ export default function EyeImage(){
             <Image
                 src={'/JeremySmiling.jpg'}
                 alt={'Jeremy Smiling'}
-                style={{objectFit:"contain"}}
-                className="object-cover"
-                priority layout={'fill'}
+                style={{objectFit:"contain",position:"absolute" }}
+                priority
+                width={'400'}
+                height={'200'}
                 ref={imageRef}
             />
             <Eyeball
@@ -62,14 +63,14 @@ export default function EyeImage(){
                 irisId={'leftIris'}
                 ballSvg={LeftEyeball}
                 ballId={'leftBall'}
-                className={'w-16 h-16 '}
+                className={'w-8 top-[35px] left-[46px]  '}
             />
             <Eyeball
                 irisSvg={LeftIris} // Double left iris looks better.
                 irisId={'rightIris'}
                 ballSvg={RightEyeball}
                 ballId={'rightBall'}
-                className={'w-16 h-16'}
+                className={'w-8 top-[35px] left-[51px] '}
             />
         </div>
     )
