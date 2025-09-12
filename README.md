@@ -1,18 +1,12 @@
 # Jcox.ca, my personal blog
 
-## 🚧🚧🚧🚧🚧🚧🚧🚧🚧❗❗This project is a W.I.P ❗❗ 🚧🚧🚧🚧🚧🚧🚧🚧🚧
-# 👷  [====]  🔨  [####]  🧱🧱🧱  🔧  [====]  🪜  [##]  🛠️  [====]  🪚
-#  [####]  🪜  [====]  🧱🧱🧱🧱  [##]  🛠️  [====]  🧱🧱  🪚👷  [####]  
-# [====]  🧱🧱  [##]  🛠️  [####]  👷👷   [====]  🪜  [##]  🧱🧱  🧱  🔨 
-## 🚧🚧🚧🚧🚧🚧🚧🚧🚧 _Hardhats on beyond this point!_ 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
-
 ### Planned improvements:
 | Task                                              | Description                                                     | Skills                               | Completed? |
 |---------------------------------------------------|-----------------------------------------------------------------|--------------------------------------|------------|
-| 📄 Create a Design Document for colors & theme    | Compile consistent colors, typography, and style references    | 🎨 Design, 🖋️ Documentation           | ❌         |
+| 📄 Create a Design Document for colors & theme    | Compile consistent colors, typography, and style references    | 🎨 Design, 🖋️ Documentation           | 🔜         |
 | 📜 Convert main page to single page with scroll   | Refactor layout so all sections appear on one scrollable page   | 💻 HTML, 🎨 CSS, ⚙️ JavaScript         | ❌         |
 | 🐌 Implement Lazy Scrolling                       | Load content as user scrolls for performance improvements      | ⚙️ Typescript, 👀 IntersectionObserver | ❌         |
-| ✨ Make Something cool with Anime.js               | Use Anime.js animations to enhance interactivity and visuals   | ⚙️ TypescriptScript, 🎞️ Anime.js             | ❌         |
+| ✨ Make Something cool with Anime.js               | Use Anime.js animations to enhance interactivity and visuals   | ⚙️ TypescriptScript, 🎞️ Anime.js             | 🔜         |
 
 
 Along with being a personal blogspot, This web application serves as a testbed for my Node.js packages as they are developed.
