@@ -2,7 +2,18 @@
 import {FC, SVGProps, useEffect, useRef} from "react";
 import {createAnimatable, createScope, Scope, utils} from "animejs";
 
-export default function Eyeball(props:Readonly<{eyeSpeed?:number,className:string,ballId:string,irisId:string,ballSvg:FC<SVGProps<SVGSVGElement>>,irisSvg:FC<SVGProps<SVGSVGElement>>, }>){
+export interface EyeballProps {
+    eyeSpeed?:number,
+    className:string,
+    ballId:string,
+    irisId:string,
+    ballSvg:FC<SVGProps<SVGSVGElement>>,
+    irisSvg:FC<SVGProps<SVGSVGElement>>,
+    ballWidth?:number,
+    ballHeight?:number,
+}
+
+export default function Eyeball(props:Readonly<EyeballProps>){
     const container = useRef(null)
     const scope= useRef<Scope>(null)
 
