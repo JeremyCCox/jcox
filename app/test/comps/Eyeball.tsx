@@ -4,7 +4,7 @@ import {createAnimatable, createScope, Scope, utils} from "animejs";
 
 export interface EyeballProps {
     eyeSpeed?:number,
-    className:string,
+    className?:string,
     eyeballId:string,
     ballSvg:FC<SVGProps<SVGSVGElement>>,
     irisSvg:FC<SVGProps<SVGSVGElement>>,
