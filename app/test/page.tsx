@@ -44,6 +44,9 @@ export default function Page(){
     return(
         <div className={'flex relative items-center justify-center w-[400px] h-fit bg-green-200 '} >
             <EyeImage
+                imageSrc={'/JeremySmiling.jpg'}
+                width={300}
+                height={200}
                 eyes={eyes}
             />
         </div>
