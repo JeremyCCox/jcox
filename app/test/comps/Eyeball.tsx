@@ -8,8 +8,10 @@ export interface EyeballProps {
     eyeballId:string,
     ballSvg:FC<SVGProps<SVGSVGElement>>,
     irisSvg:FC<SVGProps<SVGSVGElement>>,
-    ballWidth?:number,
-    ballHeight?:number,
+    width?:number,
+    height?:number,
+    top?:number,
+    left?:number,
 }
 
 export default function Eyeball(props:Readonly<EyeballProps>){
