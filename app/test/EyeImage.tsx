@@ -57,12 +57,12 @@ export default function EyeImage({eyes,imageSrc,width,height}:Readonly<EyeImageP
     return (
         <div className={'relative w-full h-full bg-red-300 flex'}>
             <Image
-                src={'/JeremySmiling.jpg'}
+                src={imageSrc}
                 alt={'Jeremy Smiling'}
                 style={{objectFit:"contain",position:"absolute" }}
                 priority
-                width={'400'}
-                height={'200'}
+                width={width}
+                height={height}
                 ref={imageRef}
             />
             {
