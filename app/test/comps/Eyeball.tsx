@@ -54,18 +54,35 @@ export default function Eyeball(props:Readonly<EyeballProps>){
     return (
         <div
             ref={container}
-            className={`${props.className} relative`}
+            style={
+                {
+                    position: 'relative',
+                    left: props.left,
+                    top: props.top,
+                }
+            }
         >
                <props.ballSvg
                    id={`${props.eyeballId}-ball`}
-                className={`${props.className} absolute`}
+                   style={
+                       {
+                           position:"absolute",
+                           width: props.width,
+                           height:props.height
+                       }}
+                className={`absolute`}
                />
 
             <div
                 id={`${props.eyeballId}-iris`}
             >
                 <props.irisSvg
-                    className={`${props.className} absolute`}
+                    style={
+                        {
+                            position:'absolute',
+                            width: props.width,
+                            height:props.height
+                        }}
                 />
             </div>
             <p>
