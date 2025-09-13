@@ -5,8 +5,7 @@ import {createAnimatable, createScope, Scope, utils} from "animejs";
 export interface EyeballProps {
     eyeSpeed?:number,
     className:string,
-    ballId:string,
-    irisId:string,
+    eyeballId:string,
     ballSvg:FC<SVGProps<SVGSVGElement>>,
     irisSvg:FC<SVGProps<SVGSVGElement>>,
     ballWidth?:number,
@@ -22,13 +21,13 @@ export default function Eyeball(props:Readonly<EyeballProps>){
         scope.current = createScope({
             root: container.current || undefined
         }).add((scope)=> {
-            const demo = document.getElementById(props.ballId);
+            const demo = document.getElementById(`${props.eyeballId}-ball`);
             if(!demo){
                 return
             }
             let bounds = demo.getBoundingClientRect();
             const refreshBounds = () => bounds = demo.getBoundingClientRect();
-            const animatableSquare = createAnimatable(`#${props.irisId}`, {
+            const animatableSquare = createAnimatable(`#${props.eyeballId}-iris`, {
                 x: 1*(props.eyeSpeed || 700), // Define the x duration to be 500ms
                 y: 1.8*(props.eyeSpeed || 700),  // Define the y duration to be 500ms
                 ease: 'out(3)',
@@ -56,12 +55,12 @@ export default function Eyeball(props:Readonly<EyeballProps>){
             className={`${props.className} relative`}
         >
                <props.ballSvg
-                   id={props.ballId}
+                   id={`${props.eyeballId}-ball`}
                 className={`${props.className} absolute`}
                />
 
             <div
-                id={props.irisId}
+                id={`${props.eyeballId}-iris`}
             >
                 <props.irisSvg
                     className={`${props.className} absolute`}
