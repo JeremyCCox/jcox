@@ -58,20 +58,23 @@ export default function EyeImage({eyes}:Readonly<{eyes:EyeballProps[]}>){
                 height={'200'}
                 ref={imageRef}
             />
-            <Eyeball
-                irisSvg={LeftIris}
-                irisId={'leftIris'}
-                ballSvg={LeftEyeball}
-                ballId={'leftBall'}
-                className={'w-8 top-[35px] left-[46px]  '}
-            />
-            <Eyeball
-                irisSvg={LeftIris} // Double left iris looks better.
-                irisId={'rightIris'}
-                ballSvg={RightEyeball}
-                ballId={'rightBall'}
-                className={'w-8 top-[35px] left-[51px] '}
-            />
+            {
+                eyes?.map(eye=>{
+                    console.log(eye)
+                    return(
+                        <Eyeball
+                            key={eye.eyeballId}
+                            irisSvg={eye.irisSvg}
+                            ballSvg={eye.ballSvg}
+                            eyeballId={eye.eyeballId}
+                            width={eye.width}
+                            height={eye.height}
+                            top={eye.top}
+                            left={eye.left}
+                        />
+                    )
+                })
+            }
         </div>
     )
 }
