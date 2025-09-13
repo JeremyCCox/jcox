@@ -67,7 +67,6 @@ export default function EyeImage({eyes,imageSrc,width,height}:Readonly<EyeImageP
             />
             {
                 eyes?.map(eye=>{
-                    console.log(eye)
                     return(
                         <Eyeball
                             key={eye.eyeballId}
