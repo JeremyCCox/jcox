@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Eyeball from "@/test/comps/Eyeball";
+import Eyeball, {EyeballProps} from "@/test/comps/Eyeball";
 import LeftIris from "@public/eyes/LeftIris.svg";
 import LeftEyeball from "@public/eyes/LeftEyeball.svg";
 import RightEyeball from "@public/eyes/RightEyeball.svg";
 import {useEffect, useRef} from 'react'
 
-export default function EyeImage(){
+export default function EyeImage({eyes}:Readonly<{eyes:EyeballProps[]}>){
     const imageRef = useRef(null);
 
     useEffect(() => {
