@@ -5,7 +5,14 @@ import LeftEyeball from "@public/eyes/LeftEyeball.svg";
 import RightEyeball from "@public/eyes/RightEyeball.svg";
 import {useEffect, useRef} from 'react'
 
-export default function EyeImage({eyes}:Readonly<{eyes:EyeballProps[]}>){
+interface EyeImageProps {
+    eyes: EyeballProps[],
+    imageSrc: string,
+    width: number | `${number}`,
+    height?: number | `${number}`,
+}
+
+export default function EyeImage({eyes,imageSrc,width,height}:Readonly<EyeImageProps>){
     const imageRef = useRef(null);
 
     useEffect(() => {
