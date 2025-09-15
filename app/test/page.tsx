@@ -21,7 +21,7 @@ export default function Page(){
             eyeballId:'rightEye',
             width:18,
             top:72,
-            left:124
+            left:121
         },
         {
             irisSvg:LeftIris,
@@ -29,15 +29,15 @@ export default function Page(){
             eyeballId:'leftEye2',
             width:10,
             top:230,
-            left:99
+            left:98
         },
         {
             irisSvg:LeftIris,
             ballSvg:RightEyeball,
             eyeballId:'rightEye2',
-            width:8,
+            width:10,
             top:230,
-            left:100
+            left:99
         }
     ]
 
@@ -45,7 +45,7 @@ export default function Page(){
         <div className={'flex relative items-center justify-center w-[400px] h-fit bg-green-200 '} >
             <EyeImage
                 imageSrc={'/JeremySmiling.jpg'}
-                width={300}
+                width={400}
                 height={200}
                 eyes={eyes}
             />
