@@ -59,6 +59,8 @@ export default function EyeImage({eyes,imageSrc,width,height}:Readonly<EyeImageP
             <Image
                 src={imageSrc}
                 alt={'Jeremy Smiling'}
+                placeholder={'blur'}
+                blurDataURL={imageSrc}
                 style={{objectFit:"contain",position:"absolute" }}
                 priority
                 width={width}
