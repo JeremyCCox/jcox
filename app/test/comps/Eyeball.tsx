@@ -59,6 +59,8 @@ export default function Eyeball(props:Readonly<EyeballProps>){
                     position: 'relative',
                     left: props.left,
                     top: props.top,
+                    width:props.width,
+                    height:props.height??props.width,
                 }
             }
         >
