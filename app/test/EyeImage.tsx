@@ -55,7 +55,7 @@ export default function EyeImage({eyes,imageSrc,width,height}:Readonly<EyeImageP
     }, []);
 
     return (
-        <div className={'relative w-full h-full bg-red-300 flex'}>
+        <div className={`relative w-[${width}px] h-[${height??width}px] flex`}>
             <Image
                 src={imageSrc}
                 alt={'Jeremy Smiling'}
