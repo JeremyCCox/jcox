@@ -1,13 +1,13 @@
 'use client'
 import {useQueryClient} from "react-query";
-import {ArticleType} from "@/app/lib/ArticleServices";
+import {ArticleType} from "@/lib/ArticleServices";
 import {useDebouncedCallback} from "use-debounce";
-import TextInput from "@/components/inputs/TextInput";
-import MyTiptap from "@/components/inputs/MyTiptap";
+import TextInput from "@components/inputs/TextInput";
+import MyTiptap from "@components/inputs/MyTiptap";
 import React, {useEffect, useState} from "react";
 import {Editor} from "@tiptap/core";
-import WidgetsPanel, {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
-import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
+import WidgetsPanel, {WidgetType} from "@components/dev/widgets/WidgetsPanel";
+import WidgetDisplaySwitch from "@components/dev/widgets/WidgetDisplaySwitch";
 
 export default function EditArticle({article,mutate,saveTime=2.5}:Readonly<{article:ArticleType,mutate:any,saveTime?:number}>){
     const [trackedArticle,setTrackedArticle]= useState(article)

@@ -1,6 +1,6 @@
 'use client'
 import React,{MouseEvent} from "react";
-import {ArticleType} from "@/app/lib/ArticleServices";
+import {ArticleType} from "@/lib/ArticleServices";
 import {useRouter} from "next/navigation";
 
 export default function AdminArticleLink({children,article,underline=false,deleteArticle}:Readonly<{ children?:React.ReactNode,article: ArticleType,underline?:boolean,deleteArticle:(articleId:string)=>void}>){

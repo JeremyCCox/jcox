@@ -1,7 +1,7 @@
 'use client'
-import Article from "@/components/articles/Article";
+import Article from "@components/articles/Article";
 import {useQuery, UseQueryResult} from "react-query";
-import {ArticleType, getArticles} from "@/app/lib/ArticleServices";
+import {ArticleType, getArticles} from "@/lib/ArticleServices";
 import React from "react";
 export default function ScrollBarArticles(){
     const articleQuery:UseQueryResult<[ArticleType]> = useQuery('articles',async () => {

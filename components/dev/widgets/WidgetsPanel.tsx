@@ -3,7 +3,7 @@
 import {ChangeEvent, MouseEvent, useEffect, useState } from "react"
 import DownloadButton from "../../DownloadButton"
 import NewWidget from "./NewWidget"
-import WidgetDisplaySwitch from "@/components/dev/widgets/WidgetDisplaySwitch";
+import WidgetDisplaySwitch from "@components/dev/widgets/WidgetDisplaySwitch";
 
 export interface WidgetType{
     id:string,

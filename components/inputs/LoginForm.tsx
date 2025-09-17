@@ -1,7 +1,7 @@
 'use client'
 import {FormEvent, useEffect, useRef, useState} from "react";
-import TextInput from "@/components/inputs/TextInput";
-import {handleLogin, registerUser} from "@/app/lib/AuthorizationServices";
+import TextInput from "@components/inputs/TextInput";
+import {handleLogin, registerUser} from "@/lib/AuthorizationServices";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 
 export default function LoginForm(){

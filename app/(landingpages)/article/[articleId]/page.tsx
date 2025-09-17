@@ -1,7 +1,7 @@
 'use server'
-import {ArticleType, getArticle} from "@/app/lib/ArticleServices";
+import {ArticleType, getArticle} from "@/lib/ArticleServices";
 import {Suspense} from "react";
-import Article from "@/components/articles/Article";
+import Article from "@components/articles/Article";
 
 export default async function Page({params}:Readonly<{params:{articleId:string}}>){
     const article:ArticleType = await JSON.parse(await getArticle(params.articleId))

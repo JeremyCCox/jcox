@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {WidgetType} from "@/components/dev/widgets/WidgetsPanel";
+import {WidgetType} from "@components/dev/widgets/WidgetsPanel";
 const {Schema, model}= mongoose;
 interface Article{
     _id:string,
